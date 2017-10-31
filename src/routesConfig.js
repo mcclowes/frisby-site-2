@@ -1,0 +1,73 @@
+import Data from "./components/common/Data";
+import NotFound from "./components/pages/404";
+
+import Home from "./components/pages/Home";
+import Example from "./components/pages/ExamplePage";
+import Credits from "./components/pages/Credits";
+import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import Credit from "./components/pages/Credit";
+
+import data from "src/data";
+import rawdata from "src/rawdata";
+
+// --------------------------------------------------
+
+const routesConfig = [
+	{
+		path: "/",
+		title: "Home",
+		component: Home,
+		exact: true,
+		show: false,
+		top: true,
+		whiteText: true,
+		home: true,
+		bgImage: data.homePage.hero.url,
+	},
+	{
+		path: "/data",
+		title: "Data",
+		component: Data(data),
+		show: false,
+	},
+	{
+		path: "/rawdata",
+		title: "Raw Data",
+		component: Data(rawdata),
+		show: false,
+	},
+	{
+		path: "/about",
+		title: "About",
+		component: About,
+		show: true,
+	},
+	{
+		path: "/credits",
+		title: "Credits",
+		component: Credits,
+		show: true,
+	},
+	
+	{
+		path: "/contact",
+		title: "Contact",
+		component: Contact,
+		show: true,
+	},
+];
+
+data.credits.forEach(o => {
+	routesConfig.push({
+		path: "/credit/" + o.slug,
+		component: Credit,
+		...o,
+	})
+});
+
+routesConfig.push({
+	component: NotFound,
+});
+
+export default routesConfig;
