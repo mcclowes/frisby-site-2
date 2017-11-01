@@ -45,7 +45,6 @@ const Home = () => (
 				<Button to = "/about">Find out more</Button>
 			</ButtonWrapper>
 		</TextWrapper>
-		{ console.log(data) }
 	</HeroImage>
 );
 

@@ -36,13 +36,7 @@ const routes = routesConfig.map(({
 		};
 
 		return (
-			<div>
-				<Nav key = "Nav" { ...passedProps }/>
-				<Main key = "Main" { ...passedProps }>
-					<Comp { ...passedProps }/>
-				</Main>
-				<Footer key = "Footer" { ...passedProps }/>
-			</div>
+			<Comp { ...passedProps }/>
 		);
 	}
 
@@ -57,10 +51,16 @@ const routes = routesConfig.map(({
 export default () =>
 	<Router>
 		<ScrollToTop>
-			<ThemeProvider theme = { defaultColors }>
-				<Switch>
-					{ routes }
-				</Switch>
+			<ThemeProvider theme = { defaultColors }>				
+				<div>
+					<Nav key = "Nav"/>
+					<Main key = "Main">
+						<Switch>
+							{ routes }
+						</Switch>
+					</Main>
+					<Footer key = "Footer"/>
+				</div>
 			</ThemeProvider>
 		</ScrollToTop>
 	</Router>;

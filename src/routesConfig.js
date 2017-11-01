@@ -20,21 +20,11 @@ const routesConfig = [
 		component: Home,
 		exact: true,
 		show: false,
-		top: true,
-		whiteText: true,
-		home: true,
-		bgImage: data.homePage.hero.url,
 	},
 	{
 		path: "/data",
 		title: "Data",
 		component: Data(data),
-		show: false,
-	},
-	{
-		path: "/rawdata",
-		title: "Raw Data",
-		component: Data(rawdata),
 		show: false,
 	},
 	{
