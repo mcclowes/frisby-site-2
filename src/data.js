@@ -5,6 +5,7 @@ import rawdata from "./rawdata";
 
 const slugify = x => _slugify(x, {
 	lower: true,
+	remove: /[$*_+~.()'"!\-:@]/g,
 });
 
 // transform a field or do something to an existing field to add a new one
