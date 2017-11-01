@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink, Link, } from "react-router-dom";
+import { withRouter, } from "react-router";
 import { compose, withState, withHandlers, } from "recompose";
 
 import * as mixins from "src/components/style/mixins";
@@ -58,10 +59,9 @@ const SimpleNavLink = styled(NavLink)`
 	0 ${ mixins.num(vars.dim.nav.margin.other) * 0.5 }px;
 `;
 
-export default props => (
+export default withRouter(props => (
 	<Wrapper { ...props }>
-		
-	<Logo to = "/">{ props.home ? null : "Jane Frisby" }</Logo>
+	<Logo to = "/">{ props.location.pathname === "/" ? null : "Jane Frisby" }</Logo>
 		{
 			routesConfig
 			.filter(R.prop("show"))
@@ -76,5 +76,5 @@ export default props => (
 			)
 		}
 	</Wrapper>
-);
+));
 
