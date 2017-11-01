@@ -5,9 +5,8 @@ import data from "src/data";
 
 // --------------------------------------------------
 
-export default ({ html, title, }) => (
-	<Generic>
-		<h1>{ title }</h1>
+export default ({ html, title, image, }) => (
+	<Generic src = { image && image.url } title = { title }>
 		<HtmlContent>{ html }</HtmlContent>
 	</Generic>
 );

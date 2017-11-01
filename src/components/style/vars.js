@@ -16,7 +16,7 @@ export const bps = breakpoints;
 
 export const colors = {
 	text: "#444",
-	footer: "#fff",
+	footer: "#000",
 	grey: "rgba(0,0,0,0.2)",
 	lines: "rgba(0,0,0,0.2)",
 };
@@ -32,15 +32,15 @@ export const font = {
 	},
 
 	title: {
-		family: "Montserrat, sans-serif",
+		family: "Abel, sans-serif",
 	},
 };
 
 const gutter = {
-	xs: 15,
-	sm: 40,
-	md: 50,
-	lg: 50,
+	xs: 20,
+	sm: 60,
+	md: 80,
+	lg: 80,
 };
 
 export const scrollbar = {
@@ -68,7 +68,7 @@ export const dimensions = {
 	},
 	footer: {
 		height: {
-			xs: "50px",
+			xs: "40px",
 			other: "60px",
 		},
 	},

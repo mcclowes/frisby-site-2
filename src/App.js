@@ -41,6 +41,7 @@ const routes = routesConfig.map(({
 				<Main key = "Main" { ...passedProps }>
 					<Comp { ...passedProps }/>
 				</Main>
+				<Footer key = "Footer" { ...passedProps }/>
 			</div>
 		);
 	}

@@ -3,7 +3,7 @@ import { Link, } from "react-router-dom";
 
 import data from "src/data";
 import { bpEach, } from "src/components/style/mixins";
-import { GridCell, } from "src/components/common";
+import { GridCell, Banner, } from "src/components/common";
 
 // --------------------------------------------------
 
@@ -28,7 +28,7 @@ const CellInner = styled(GridCell)`
 `;
 
 const Image = styled.div`
-	background-color: red;
+	background-color: #f8f8f8;
 	background-image: url(${R.path([ "image", "url", ])});
 	background-size: cover;
 	background-position: center center;
@@ -53,11 +53,14 @@ const Cell = ({ image, title, slug, }) => (
 );
 
 const Credits = () => (
-	<Container>
-		{
-			data.credits.map(o => <Cell key = { o.slug } { ...o }/>)
-		}
-	</Container>
+	<div>
+		<Banner>Credits</Banner>
+		<Container>
+			{
+				data.credits.map(o => <Cell key = { o.slug } { ...o }/>)
+			}
+		</Container>
+	</div>
 );
 
 export default Credits;

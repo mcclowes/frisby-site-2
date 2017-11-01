@@ -9,6 +9,8 @@ import { objMap, } from "src/lib/util";
 const textMargins = objMap(vars.font.size, (key, val) => val + " 0");
 
 const defaultGlobalStyles = css`
+	@import url('https://fonts.googleapis.com/css?family=Abel|Nunito');
+
 	*, *:before, *:after {
 		box-sizing: border-box;
 		margin: 0;
@@ -22,11 +24,12 @@ const defaultGlobalStyles = css`
 
 	body {
 		background: white;
-		font-family: Helvetica, Arial, sans-serif;
+		font-family: Nunito, Helvetica, Arial, sans-serif;
 		${ mixins.bpEach("font-size", vars.font.size) }
 		color: ${ vars.colors.text };
 		margin: 0;
 		line-height: 1.5;
+		${mixins.bpEither("margin-bottom", vars.dim.footer.height)}
 	}
 
 	a,

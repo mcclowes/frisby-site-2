@@ -6,7 +6,7 @@ import data from "src/data";
 // --------------------------------------------------
 
 export default () => (
-	<Generic>
+	<Generic title = "About Jane">
 		<HtmlContent>{ data.aboutPage.html }</HtmlContent>
 	</Generic>
 );

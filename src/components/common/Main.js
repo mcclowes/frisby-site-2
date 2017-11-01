@@ -26,7 +26,7 @@ const PrevBg = Bg;
 const CurrentBg = Bg;
 
 const Wrapper = styled.main`
-	${ props => props.home ? "" : mixins.bpEither("padding-top", vars.dim.nav.height) }
+	${ props => props.home || true ? "" : mixins.bpEither("padding-top", vars.dim.nav.height) }
 	background-color: ${R.path([ "theme", "body", ])};
 	position: relative;
 	min-height: 100vh;

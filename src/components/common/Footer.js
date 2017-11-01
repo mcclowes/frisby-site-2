@@ -10,6 +10,7 @@ import { Icon, } from "./misc";
 
 const Wrapper = styled.footer`
 	background-color: ${R.path([ "theme", "footer", ])};
+	color: white;
 	${ mixins.bpEither("height", vars.dim.footer.height) }
 	${ mixins.bpEither("padding", vars.dim.nav.margin) };
 	align-items: center;
@@ -21,6 +22,8 @@ const Wrapper = styled.footer`
 	overflow: hidden;
 	position: absolute;
 	right: 0;
+
+	font-size: 0.9em;
 `;
 
 const Left = styled.div`
@@ -37,14 +40,18 @@ const Right = styled.div`
 	}
 `;
 
+const Stuff = styled.div`
+
+`;
+
+const Credit = styled.a`
+	display: block;
+`;
+
 const Footer = () =>
 	<Wrapper>
-		<Left>Footer Text</Left>
-
-		<Right>
-			<a href = "#"><Icon type = "facebook-square"/></a>
-			<a href = "#"><Icon type = "twitter"/></a>
-		</Right>
+		<Stuff>© Jane Frisby 2017</Stuff>
+		<Credit href = "https://consulting.codogo.io">website by Codogo</Credit>
 	</Wrapper>;
 
 export default Footer;

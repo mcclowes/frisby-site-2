@@ -22,7 +22,7 @@ const Wrapper = styled.nav`
 	right: 0;
 	top: 0;
 	z-index: 2;
-	${props => props.whiteText ? "color: white;" : ""}
+	${props => props.whiteText || true ? "color: white;" : ""}
 
 	display: flex;
 	flex-direction: row;
@@ -40,9 +40,14 @@ const LinkButton = styled(NavLink)`
 	padding: 0 0.75em;
 	display: flex;
 	align-items: center;
+	transition: 0.1s linear all;
 
-	&.active span {
-		text-decoration: underline;
+	&.active {
+		opacity: 0.75;
+	}
+
+	&:hover {
+		opacity: 0.5;
 	}
 `;
 

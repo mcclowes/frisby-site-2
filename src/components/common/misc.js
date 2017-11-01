@@ -87,56 +87,26 @@ export const Icon = props =>
 	/>
 
 export const ButtonWrapper = styled.div`
-	display: inline-block;
+	display: inline-flex;
 	padding: 0 1em;
 	line-height: 1;
 	height: 2.6em;
-	transition: 0.1s linear background;
+	border-radius: 1.3em;
 	cursor: pointer;
-	${ p => (p.margin ? "margin: 0.3em;" : "") } display: inline-flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 
-	&:hover,
-	&:visited,
-	&:active {
-		color: ${ p => p.color || vars.colors.text };
+	color: currentColor;
+	border: 1.5px solid currentColor;
+	${mixins.xs`border-width: 1px;`}
+	background: transparent;
+	transition: 0.2s linear all;
+
+	&:hover {
+		background-color: rgba(0,0,0,0.5);
 	}
 
-	${({ outline, color, hoverColor, }) => 
-		outline || true
-			? css`
-				color: ${ color || vars.colors.text };
-				border: 1.5px solid ${ color || vars.colors.text };
-				${mixins.xs`border-width: 1px;`}
-				background: transparent;
-
-				&:hover,
-				&:visited,
-				&:active {
-					color: ${ color || vars.colors.text };
-				}
-			`
-			: `
-				color: white;
-				background: ${ color || vars.colors.text };
-
-				&:hover,
-				&:visited,
-				&:active {
-					color: white;
-				}
-
-				&:hover {
-					background: ${
-						hoverColor ||
-						(color ? mixins.darken(color, 0.1) : mixins.lighten(vars.colors.text, 0.1))
-					};
-				}
-
-			`
-	}
 `;
 
 const IconSpan = styled.span`display: inline-block;`;
