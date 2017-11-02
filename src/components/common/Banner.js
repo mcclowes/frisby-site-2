@@ -15,7 +15,7 @@ const BannerWrapper = styled(GridCell)`
 	background-position: center center;
 	height: 18em;
 	${mixins.bpEither("padding-top", vars.dim.nav.height)}
-	background-attachment: fixed;
+	//background-attachment: fixed;
 	display: flex;
 	justify-content: center;
 	align-items: center;

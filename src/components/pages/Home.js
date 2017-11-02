@@ -28,7 +28,8 @@ const TextWrapper = styled(GridCell)`
 
 const TitleText = styled.div`
 	font-size: 3em;
-	font-family: ${vars.font.title.family};
+	font-family: ${ vars.font.title.family };
+	margin-bottom: 1em;
 `;
 
 const ButtonWrapper = styled.div`
@@ -38,9 +39,10 @@ const ButtonWrapper = styled.div`
 const Home = () => (
 	<HeroImage>
 		<TextWrapper>
-			<TitleText>Jane Frisby</TitleText>
-			<p>Caster. Producer. Genius. Thoughtleader. Philanthropist. Legend.</p>
-			<p>Some more text to say a bit more stuff here in the home page that basically says you should clcik the btton and go to the about page.</p>
+			<TitleText>{ data.siteSettings.siteName }</TitleText>
+			
+			<div dangerouslySetInnerHTML = { { __html: data.homePage.aboutText1 } }/>
+			
 			<ButtonWrapper>
 				<Button to = "/about">Find out more</Button>
 			</ButtonWrapper>

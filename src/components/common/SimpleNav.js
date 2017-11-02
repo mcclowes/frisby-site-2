@@ -8,12 +8,14 @@ import * as vars from "src/components/style/vars";
 import { objMap, } from "src/lib/util";
 import routesConfig from "src/routesConfig";
 
+import data from "src/data";
+
 // --------------------------------------------------
 
 const wrapperPadding = R.map(o => `0 ${o}`)(vars.dim.nav.margin);
 
 const Wrapper = styled.nav`
-	 ${ mixins.bpEither(
+	${ mixins.bpEither(
 		"height",
 		vars.dim.nav.height,
 	) }
@@ -34,6 +36,11 @@ const Logo = styled(Link)`
 	font-size: 2em;
 	font-family: ${vars.font.title.family};
 	margin-right: auto;
+	word-break: keep-all;
+	text-overflow: clip;
+	overflow: hidden;
+	height: 1.4em;
+	padding-right: 0.5em;
 `;
 
 const LinkButton = styled(NavLink)`
@@ -61,7 +68,8 @@ const SimpleNavLink = styled(NavLink)`
 
 export default withRouter(props => (
 	<Wrapper { ...props }>
-	<Logo to = "/">{ props.location.pathname === "/" ? null : "Jane Frisby" }</Logo>
+
+	<Logo to = "/">{ props.location.pathname === "/" ? null : data.siteSettings.siteName }</Logo>
 		{
 			routesConfig
 			.filter(R.prop("show"))

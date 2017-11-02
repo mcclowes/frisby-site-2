@@ -98,6 +98,7 @@ const credits = R.map(
 	)
 )(dataObj.credits)
 
+const siteSettings = dataObj.siteSettings[0];
 
 const retval = {
 	...dataObj,
@@ -105,7 +106,10 @@ const retval = {
 	aboutPage,
 	contactPage,
 	credits,
+	siteSettings,
 	rawdata,
 }
+
+console.log(retval);
 
 export default retval;

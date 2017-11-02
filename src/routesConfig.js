@@ -2,7 +2,6 @@ import Data from "./components/common/Data";
 import NotFound from "./components/pages/404";
 
 import Home from "./components/pages/Home";
-import Example from "./components/pages/ExamplePage";
 import Credits from "./components/pages/Credits";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";

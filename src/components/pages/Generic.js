@@ -14,7 +14,10 @@ const MaxWidthTextCell = styled(TextCell)`
 
 const Generic = ({ children, title, src, }) => (
 	<div>
-		<Banner src = { src }>{ title }</Banner>
+		<Banner src = { `http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ src }` }>
+			{ title }
+		</Banner>
+
 		<GridCell>
 			<MaxWidthTextCell>
 				{ children }

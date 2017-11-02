@@ -9,7 +9,7 @@ import { objMap, } from "src/lib/util";
 const textMargins = objMap(vars.font.size, (key, val) => val + " 0");
 
 const defaultGlobalStyles = css`
-	@import url('https://fonts.googleapis.com/css?family=Abel|Nunito');
+	@import url('https://fonts.googleapis.com/css?family=Abel|Nunito:400,600,700');
 
 	*, *:before, *:after {
 		box-sizing: border-box;
@@ -46,6 +46,10 @@ const defaultGlobalStyles = css`
 
 	img {
 		vertical-align: bottom;
+	}
+
+	strong {
+		font-weight: bold;
 	}
 `;
 
