@@ -1,4 +1,5 @@
 import { lifecycle, } from "recompose";
+import ReactDOMServer from "react-dom/server";
 
 export const objMap = (obj, cb) =>
 	Object.keys(obj).reduce(
@@ -21,3 +22,14 @@ export const logProps = str =>
 			console.log(str, this.props);
 		},
 	});
+
+export const childrenToText = children => {
+	const html = ReactDOMServer.renderToStaticMarkup(<div>{ children }</div>);
+
+	const tag = document.createElement("div");
+	tag.innerHTML = html;
+	const text = tag.innerText;
+	tag.remove();
+
+	return text;
+};

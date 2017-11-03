@@ -90,3 +90,8 @@ dimensions.gutter.container = {
 	xs: dimensions.gutter.full.xs,
 };
 export const dim = dimensions;
+
+export const meta = {
+	googleSearch: "YQs24--DxVBln2zZc8hPo1kZFoxzc2amoF6-QWkDe7k",
+};
+

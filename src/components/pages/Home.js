@@ -5,6 +5,7 @@ import data from "src/data";
 import * as vars from "src/components/style/vars";
 import * as mixins from "src/components/style/mixins";
 import { GridCell, Button, } from "src/components/common";
+import Head from "src/components/common/Head";
 
 // --------------------------------------------------
 
@@ -38,6 +39,7 @@ const ButtonWrapper = styled.div`
 
 const Home = () => (
 	<HeroImage>
+		<Head/>
 		<TextWrapper>
 			<TitleText>{ data.siteSettings.siteName }</TitleText>
 			

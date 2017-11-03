@@ -5,6 +5,7 @@ import Moment from "moment";
 import data from "src/data";
 import { bpEach, } from "src/components/style/mixins";
 import { GridCell, Banner, } from "src/components/common";
+import Head from "src/components/common/Head";
 
 // --------------------------------------------------
 const creditsList = data.credits;
@@ -50,7 +51,7 @@ const Text = styled.div`
 `;
 
 const Subtext = styled.div`
-	margin-top: 1em;
+	margin-top: 0.5em;
 	font-size: 0.8em;
 	text-align: center;
 	opacity: 0.7;
@@ -73,8 +74,12 @@ const Cell = ({ image, title, slug, productionType, role, released, }) => (
 	</CellWrapper>
 );
 
+const creditsListText = creditsList.reduce((acc, { title, }) => `${acc}\n${title}`, "");
+const description = `Credits:\n${creditsListText}`;
+
 const Credits = () => (
 	<div>
+		<Head title = "Credits" description = { description }/>
 		<Banner>Credits</Banner>
 
 		<Container>
