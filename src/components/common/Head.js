@@ -13,7 +13,7 @@ const {
 	siteDescription,
 } = data.siteSettings;
 
-console.log(data.siteSettings);
+const siteUrl = "http://frisby.netlify.com";
 
 // --------------------------------------------------
 
@@ -23,7 +23,7 @@ const Head = ({
 	description = siteDescription,
 	match,
 }) => {
-	const url = window.location.origin + match.url;
+	const url = siteUrl + match.url;
 
 	const title = (
 		_title

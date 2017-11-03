@@ -26,10 +26,12 @@ export const logProps = str =>
 export const childrenToText = children => {
 	const html = ReactDOMServer.renderToStaticMarkup(<div>{ children }</div>);
 
-	const tag = document.createElement("div");
-	tag.innerHTML = html;
-	const text = tag.innerText;
-	tag.remove();
+	// const tag = document.createElement("div");
+	// tag.innerHTML = html;
+	// const text = tag.innerText;
+	// tag.remove();
+
+	const text = html.replace(/<[^>]*>/g, "");
 
 	return text;
 };
