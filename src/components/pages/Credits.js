@@ -15,8 +15,6 @@ creditsList.sort(
 	}
 );
 
-console.log(creditsList);
-
 const Container = styled(GridCell)`
 	display: flex;
 	flex-wrap: wrap;

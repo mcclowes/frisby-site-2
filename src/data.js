@@ -108,8 +108,6 @@ const retval = {
 	credits,
 	siteSettings,
 	rawdata,
-}
-
-console.log(retval);
+};
 
 export default retval;
