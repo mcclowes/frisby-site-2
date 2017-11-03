@@ -13,10 +13,12 @@ const {
 	siteDescription,
 } = data.siteSettings;
 
+console.log(data.siteSettings);
+
 // --------------------------------------------------
 
 const Head = ({
-	image = sitePic,
+	image: _image = sitePic.url,
 	title: _title,
 	description = siteDescription,
 	match,
@@ -27,6 +29,12 @@ const Head = ({
 		_title
 		? `${_title} | ${siteName}`
 		: `${siteName} | ${siteDescription}`
+	);
+
+	const image = (
+		_image.includes("http")
+		? _image
+		: "https:" + _image
 	);
 
 	return (

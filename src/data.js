@@ -98,7 +98,9 @@ const credits = R.map(
 	)
 )(dataObj.credits)
 
-const siteSettings = dataObj.siteSettings[0];
+const siteSettings = R.pipe(
+	adjustFields("sitePic", "sitePic", shapeImageField),
+)(dataObj.siteSettings[0]);
 
 const retval = {
 	...dataObj,
