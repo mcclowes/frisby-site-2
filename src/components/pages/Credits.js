@@ -4,10 +4,11 @@ import Moment from "moment";
 
 import data from "src/data";
 import { bpEach, } from "src/components/style/mixins";
-import { GridCell, Banner, } from "src/components/common";
+import { Button, GridCell, Banner, } from "src/components/common";
 import Head from "src/components/common/Head";
 
 // --------------------------------------------------
+
 const creditsList = data.credits;
 creditsList.sort(
 	(x, y) => {
@@ -32,7 +33,8 @@ const CellWrapper = styled.div`
 	${bpEach("width", widths)}
 `;
 
-const CellInner = styled(GridCell)`
+const CellInner = styled.div`
+	padding: 1em 0.5em;
 `;
 
 const Image = styled.div`
@@ -64,8 +66,11 @@ const Cell = ({ image, title, slug, productionType, role, released, }) => (
 				<Text>{ title }</Text>
 
 				<Subtext>
-					{ `${ role }  -  ` }
-					{ Moment(released).format('YYYY') }
+					{ `${ role || "Casting Director" }  -  ` }
+					{ Moment(released).isBefore(new Date())
+							? Moment(released).format('YYYY') 
+							: "Coming Soon"
+					}
 				</Subtext>
 			</CellInner>
 		</Link>
@@ -75,17 +80,84 @@ const Cell = ({ image, title, slug, productionType, role, released, }) => (
 const creditsListText = creditsList.reduce((acc, { title, }) => `${acc}\n${title}`, "");
 const description = `Credits:\n${creditsListText}`;
 
-const Credits = () => (
-	<div>
-		<Head title = "Credits" description = { description }/>
-		<Banner>Credits</Banner>
+// --------------------------------------------------
 
-		<Container>
-			{
-				creditsList.map(o => <Cell key = { o.slug } { ...o }/>)
-			}
-		</Container>
-	</div>
+const ViewSelectors = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 30px 30px 0;
+	width: 100%;
+`;
+
+const ViewSelectorButton = styled(Button)`
+	cursor: pointer;
+	margin: 0 0.3em;
+
+	${ ({ active, }) => (
+		active 
+		&& ` background-color: rgba(0,0,0,0.5); color: white; `
+	)};
+`;
+
+const SeeAllButton = styled.div`
+	text-align: right;
+	flex: 1;
+`;
+
+// --------------------------------------------------
+
+const CreditsGrid = ({ creditsList, }) => (
+	<Container>
+		{
+			creditsList.filter(R.prop("image")).map(o => <Cell key = { o.slug } { ...o }/>)
+		}
+	</Container>
 );
 
-export default Credits;
+export default class Credits extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			view: "grid",
+			filter: "featured",
+		}
+	}
+
+	clickSeeAll = () => this.setState({
+		view: "table",
+		filter: "",
+	})
+
+	render(){
+		return (
+			<div>
+				<Head title = "Credits" description = { description }/>
+				<Banner>Credits</Banner>
+
+				<ViewSelectors>
+					<ViewSelectorButton active = { this.state.filter === "featured" } >
+						Featured
+					</ViewSelectorButton>
+					<ViewSelectorButton>
+						Film
+					</ViewSelectorButton>
+					<ViewSelectorButton>
+						Short
+					</ViewSelectorButton>
+					<ViewSelectorButton>
+						Theatre
+					</ViewSelectorButton>
+
+					<SeeAllButton>
+						<Button onClick = { this.clickSeeAll } >
+							See All
+						</Button>
+					</SeeAllButton>
+				</ViewSelectors>
+
+				<CreditsGrid creditsList = { creditsList } />
+			</div>
+		);
+	}
+};
