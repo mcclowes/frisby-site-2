@@ -1,3 +1,6 @@
+import {
+	BrowserRouter as Router,
+} from "react-router-dom";
 import { lifecycle, } from "recompose";
 import ReactDOMServer from "react-dom/server";
 
@@ -24,7 +27,11 @@ export const logProps = str =>
 	});
 
 export const childrenToText = children => {
-	const html = ReactDOMServer.renderToStaticMarkup(<div>{ children }</div>);
+	const html = ReactDOMServer.renderToStaticMarkup(
+		<Router>
+		<div>{ children }</div>
+	</Router>
+	);
 
 	// const tag = document.createElement("div");
 	// tag.innerHTML = html;

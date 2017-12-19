@@ -105,8 +105,8 @@ export const ButtonWrapper = styled.div`
 
 	&:hover {
 		background-color: rgba(0,0,0,0.5);
+		color: white;
 	}
-
 `;
 
 const IconSpan = styled.span`display: inline-block;`;

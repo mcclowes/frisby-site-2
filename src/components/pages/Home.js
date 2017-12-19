@@ -1,4 +1,3 @@
-import { Container, } from "src/components/common";
 import styled from "styled-components";
 
 import data from "src/data";
