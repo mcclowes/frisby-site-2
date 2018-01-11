@@ -3,29 +3,27 @@ import marked from "marked";
 
 import rawdata from "./rawdata";
 
-const slugify = x => _slugify(x, {
-	lower: true,
-	remove: /[$*_+~.()'"!\-:@]/g,
-});
+const slugify = x =>
+	_slugify(x, {
+		lower: true,
+		remove: /[$*_+~.()'"!\-:@]/g,
+	});
 
 // transform a field or do something to an existing field to add a new one
 const adjustFields = (a, b, fn) => fieldsObj => ({
 	...fieldsObj,
-	...(
-		fieldsObj[a]
-		? { [b]: fn(fieldsObj[a]), }
-		: {}
-	),
+	...(fieldsObj[a] ? { [b]: fn(fieldsObj[a]) } : {}),
 });
 
 // transform an array of objects to a map of objects, where the keys are object.slug
 const makeMapUsingSlugs = list => {
-	return list.reduce((acc, item) => (
-		{
+	return list.reduce(
+		(acc, item) => ({
 			...acc,
 			[item.slug]: item,
-		}
-	), {} )
+		}),
+		{},
+	);
 };
 
 const shapeImageField = o => {
@@ -34,13 +32,7 @@ const shapeImageField = o => {
 			fields: {
 				file: {
 					url,
-					details: {
-						size,
-						image: {
-							width,
-							height,
-						},
-					},
+					details: { size, image: { width, height } },
 					fileName,
 					contentType,
 				},
@@ -55,8 +47,7 @@ const shapeImageField = o => {
 			url,
 			width,
 		};
-	}
-	else {
+	} else {
 		return o;
 	}
 };
@@ -75,28 +66,24 @@ rawdata.items.forEach(item => {
 		createdAt: item.sys.createdAt,
 	};
 
-	dataObj[itemType] = (
-		dataObj[itemType]
+	dataObj[itemType] = dataObj[itemType]
 		? dataObj[itemType].concat(shapedItem)
-		: [ shapedItem, ]
-	);
+		: [shapedItem];
 });
 
 // --------------------------------------------------
 
 // shape the data however you want my guy
-const homePage = R.pipe(
-	adjustFields("hero", "hero", shapeImageField),
-)(dataObj.homePage[0]);
+const homePage = R.pipe(adjustFields("hero", "hero", shapeImageField))(
+	dataObj.homePage[0],
+);
 
 const aboutPage = dataObj.pages.find(o => o.slug === "about");
 const contactPage = dataObj.pages.find(o => o.slug === "contact");
 
-const credits = R.map(
-	R.pipe(
-		adjustFields("description", "html", marked)
-	)
-)(dataObj.credits)
+const credits = R.map(R.pipe(adjustFields("description", "html", marked)))(
+	dataObj.credits,
+);
 
 const siteSettings = R.pipe(
 	adjustFields("sitePic", "sitePic", shapeImageField),

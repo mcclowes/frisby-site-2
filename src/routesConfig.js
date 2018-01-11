@@ -38,7 +38,7 @@ const routesConfig = [
 		component: Credits,
 		show: true,
 	},
-	
+
 	{
 		path: "/contact",
 		title: "Contact",
@@ -52,7 +52,7 @@ data.credits.forEach(o => {
 		path: "/credit/" + o.slug,
 		component: Credit,
 		...o,
-	})
+	});
 });
 
 routesConfig.push({

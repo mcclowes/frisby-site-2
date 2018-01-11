@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { printObj, } from "src/lib/util";
-import { Container, } from "src/components/common";
+import { printObj } from "src/lib/util";
+import { Container } from "src/components/common";
 
 // --------------------------------------------------
 
@@ -14,7 +14,7 @@ const Wrapper = styled(Container)`
 
 export default data => () => (
 	<Wrapper>
-		{ printObj(data) }
-		{ console.log(data) }
+		{printObj(data)}
+		{console.log(data)}
 	</Wrapper>
 );
