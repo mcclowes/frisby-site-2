@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Moment from "moment";
 
 import data from "src/data";
@@ -36,13 +35,20 @@ const CellWrapper = styled.div`${bpEach("width", widths)};`;
 const CellInner = styled.div`padding: 1em 0.5em;`;
 
 const Image = styled.div`
+	${R.pipe(R.path(["image", "url"]))}
 	background-color: #f8f8f8;
-	background-image: url(
-		http://res.cloudinary.com/codogo/image/fetch/h_500,
-		c_fill,
-		g_face,
-		f_auto/https:${R.path(["image", "url"])}
-	);
+	background-image: url("http://${R.pipe(
+		R.path(["image", "url"]),
+		R.append(R.__, [
+			"res.cloudinary.com",
+			"codogo",
+			"image",
+			"fetch",
+			"h_500,c_fill,g_face,f_auto",
+			"https:",
+		]),
+		R.join("/"),
+	)}");
 	background-size: cover;
 	background-position: center center;
 	padding-top: 60%;
