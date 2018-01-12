@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Moment from "moment";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import data from "src/data";
 import { bpEach } from "src/components/style/mixins";
@@ -209,8 +209,31 @@ export default class Credits extends React.Component {
 			filter: "",
 		});
 
+	clickFeatured = () =>
+		this.setState({
+			view: "grid",
+			filter: "featured",
+		});
+
+	clickFilm = () =>
+		this.setState({
+			view: "grid",
+			filter: "film",
+		});
+
+	clickShort = () =>
+		this.setState({
+			view: "grid",
+			filter: "short",
+		});
+
+	clickTheater = () =>
+		this.setState({
+			view: "grid",
+			filter: "theater",
+		});
+
 	render() {
-		console.log(this.state);
 		return (
 			<div>
 				<Head title="Credits" description={description} />
@@ -219,22 +242,46 @@ export default class Credits extends React.Component {
 				<ViewSelectors>
 					<ViewSelectorButton
 						active={this.state.filter === "featured"}
+						onClick={this.clickFeatured}
 					>
 						Featured
 					</ViewSelectorButton>
-					<ViewSelectorButton>Film</ViewSelectorButton>
-					<ViewSelectorButton>Short</ViewSelectorButton>
-					<ViewSelectorButton>Theatre</ViewSelectorButton>
+					<ViewSelectorButton
+						active={this.state.filter === "film"}
+						onClick={this.clickFilm}
+					>
+						Film
+					</ViewSelectorButton>
+					<ViewSelectorButton
+						active={this.state.filter === "short"}
+						onClick={this.clickShort}
+					>
+						Short
+					</ViewSelectorButton>
 
 					<SeeAllButton>
-						<Button onClick={this.clickSeeAll}>See All</Button>
+						<Button
+							active={this.state.view === "table"}
+							onClick={this.clickSeeAll}
+						>
+							See All
+						</Button>
 					</SeeAllButton>
 				</ViewSelectors>
 
 				{this.state.view === "table" ? (
 					<CreditsTable creditsList={creditsList} />
 				) : (
-					<CreditsGrid creditsList={creditsList} />
+					<CreditsGrid
+						creditsList={creditsList.filter(
+							({ productionType = "" }) =>
+								this.state.filter === "featured"
+									? true
+									: productionType
+											.toLowerCase()
+											.includes(this.state.filter),
+						)}
+					/>
 				)}
 			</div>
 		);
