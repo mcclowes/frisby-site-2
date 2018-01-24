@@ -11,12 +11,11 @@ import Head from "src/components/common/Head";
 // --------------------------------------------------
 
 const creditsList = data.credits;
-creditsList.sort((x, y) => {
-	return (
-		new Date(y.released || y.createdAt) -
-		new Date(x.released || x.createdDate)
-	);
-});
+creditsList.sort((x, y) => (
+	(y.released || x.released)
+	? new Date(y.released || 0) - new Date(x.released || 0)
+	: new Date(y.createdAt) - new Date(x.createdAt)
+));
 
 const Container = styled(GridCell)`
 	display: flex;
@@ -77,11 +76,11 @@ const Cell = ({ image, title, slug, productionType, role, released }) => (
 
 				<Subtext>
 					{`${role || "Casting Director"}  -  `}
-					
+
 					{
 						Moment(released).isBefore(new Date())
-						? Moment(released).format("YYYY")
-						: "Coming Soon"
+							? Moment(released).format("YYYY")
+							: "Coming Soon"
 					}
 				</Subtext>
 			</CellInner>
@@ -98,8 +97,8 @@ const description = `Credits:\n${creditsListText}`;
 // --------------------------------------------------
 
 const ViewSelectors = styled.div`
-	display: flex;
-	flex-direction: row;
+display: flex;
+flex-direction: row;
 	padding: 30px 30px 0;
 	width: 100%;
 `;
@@ -113,13 +112,14 @@ const ViewSelectorButton = styled(Button)`
 `;
 
 const SeeAllButton = styled.div`
-	text-align: right;
-	flex: 1;
+		text-align: right;
+		flex: 1;
 `;
 
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
+	console.log({ creditsList, }),
 	<Container>
 		{
 			creditsList
@@ -142,8 +142,8 @@ const TableHeader = styled.thead`
 `;
 
 const TableRow = styled.tr`
-	border-bottom: 1px solid ${colors.lines};
-	cursor: pointer;
+border-bottom: 1px solid ${colors.lines};
+cursor: pointer;
 
 	&:hover {
 		background-color: ${colors.grey};
@@ -162,44 +162,44 @@ const CreditsTable = ({ creditsList }) => (
 		<Table>
 			<TableHeader>
 				<TableCell>Name</TableCell>
-				
+
 				<TableCell>Type</TableCell>
-				
+
 				<TableCell>Released</TableCell>
-			</TableHeader>
+	</TableHeader>
 
-			{
-				creditsList.map(
-					({
-						slug,
-						title,
-						productionType,
-						released,
-						html,
-						...credit
-					}) => (
-						<TableRow key={slug}>
-							<TableCell>
-								<Link to={"/credit/" + slug}>{title}</Link>
-							</TableCell>
+	{
+		creditsList.map(
+			({
+				slug,
+				title,
+				productionType,
+				released,
+				html,
+				...credit
+			}) => (
+				<TableRow key={slug}>
+					<TableCell>
+						<Link to={"/credit/" + slug}>{title}</Link>
+					</TableCell>
 
-							<TableCell>
-								<Link to={"/credit/" + slug}>{productionType}</Link>
-							</TableCell>
+					<TableCell>
+						<Link to={"/credit/" + slug}>{productionType}</Link>
+					</TableCell>
 
-							<TableCell>
-								<Link to={"/credit/" + slug}>
-									{released &&
-										(Moment(released).isBefore(new Date())
-											? Moment(released).format("YYYY")
-											: "Coming Soon")}
+					<TableCell>
+						<Link to={"/credit/" + slug}>
+							{released &&
+								(Moment(released).isBefore(new Date())
+									? Moment(released).format("YYYY")
+									: "Coming Soon")}
 								</Link>
 							</TableCell>
 						</TableRow>
-					),
-				)
-			}
-		</Table>
+			),
+		)
+	}
+</Table>
 	</Container>
 );
 
@@ -293,23 +293,23 @@ export default class Credits extends React.Component {
 
 				{
 					this.state.view === "table"
-					? (
-						<CreditsTable creditsList={creditsList} />
-					) 
-					: (
-						<CreditsGrid
-							creditsList = {
-								creditsList.filter(
-									({ productionType = "" }) =>
+						? (
+							<CreditsTable creditsList={creditsList} />
+						) 
+						: (
+							<CreditsGrid
+								creditsList = {
+									creditsList.filter(
+										({ productionType = "" }) =>
 										this.state.filter === "featured"
 										? true
 										: productionType
-											.toLowerCase()
-											.includes(this.state.filter),
-								)
-							}
-						/>
-					)
+										.toLowerCase()
+										.includes(this.state.filter),
+									)
+								}
+							/>
+						)
 				}
 			</div>
 		);
