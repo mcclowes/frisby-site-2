@@ -189,10 +189,10 @@ const CreditsTable = ({ creditsList }) => (
 
 							<TableCell>
 								<Link to={"/credit/" + slug}>
-									{released &&
-										(Moment(released).isBefore(new Date())
-											? Moment(released).format("YYYY")
-											: "Coming Soon")}
+									{
+										released && (Moment(released).isBefore(new Date())
+										? Moment(released).format("YYYY")
+										: "Coming Soon")}
 								</Link>
 							</TableCell>
 						</TableRow>
@@ -264,22 +264,22 @@ export default class Credits extends React.Component {
 						active={this.state.filter === "film"}
 						onClick={this.clickFilm}
 					>
-						Film
+						Films
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
 						active={this.state.filter === "short"}
 						onClick={this.clickShort}
 					>
-						Short
+						Shorts
 					</ViewSelectorButton>
-
-					<ViewSelectorButton
+					
+					{/*<ViewSelectorButton
 						active={this.state.filter === "theatre"}
 						onClick={this.clickTheatre}
 					>
 						Theatre
-					</ViewSelectorButton>
+					</ViewSelectorButton>*/}
 
 					<SeeAllButton>
 						<Button
