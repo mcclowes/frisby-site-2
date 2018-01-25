@@ -57,6 +57,15 @@ const defaultGlobalStyles = css`
 	strong {
 		font-weight: bold;
 	}
+
+
+	p > a {
+		text-decoration: underline;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 `;
 
 // --------------------------------------------------

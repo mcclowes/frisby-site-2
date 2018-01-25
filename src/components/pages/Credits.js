@@ -17,6 +17,15 @@ creditsList.sort((x, y) => (
 	: new Date(y.createdAt) - new Date(x.createdAt)
 ));
 
+const creditsProductionList = data.credits;
+creditsProductionList
+	.sort((x, y) => (
+		(y.released || x.released)
+		? new Date(y.released || 0) - new Date(x.released || 0)
+		: new Date(y.createdAt) - new Date(x.createdAt)
+	))
+;
+
 const Container = styled(GridCell)`
 	display: flex;
 	flex-wrap: wrap;
@@ -70,13 +79,11 @@ const Cell = ({ image, title, slug, productionType, role, released }) => (
 	<CellWrapper>
 		<Link to={"/credit/" + slug}>
 			<CellInner>
-				<Image image={image} />
+				<Image image = { image } />
 
-				<Text>{title}</Text>
+				<Text>{ title }</Text>
 
 				<Subtext>
-					{`${role || "Casting Director"}  -  `}
-
 					{
 						Moment(released).isBefore(new Date())
 							? Moment(released).format("YYYY")
@@ -123,7 +130,7 @@ const CreditsGrid = ({ creditsList, }) => (
 	<Container>
 		{
 			creditsList
-				.filter(R.prop("image"))
+				//.filter(R.prop("image"))
 				.map(o => <Cell key = { o.slug } { ...o } />)
 		}
 	</Container>
@@ -152,13 +159,22 @@ cursor: pointer;
 `;
 
 const TableCell = styled.td`
+	padding: 0.2em 0.5em;
+
 	a {
 		display: block;
 	}
 `;
 
-const CreditsTable = ({ creditsList }) => (
-	<Container>
+const CreditsTableWrapper = styled(Container)`
+	flex-direction: column;
+    align-items: center;
+`;
+
+const CreditsTable = ({ creditsList, filter, title, }) => (
+	<CreditsTableWrapper>
+		<h2>{ title }</h2>
+
 		<Table>
 			<TableHeader>
 				<TableCell>Name</TableCell>
@@ -166,41 +182,47 @@ const CreditsTable = ({ creditsList }) => (
 				<TableCell>Type</TableCell>
 
 				<TableCell>Released</TableCell>
-	</TableHeader>
+			</TableHeader>
 
-	{
-		creditsList.map(
-			({
-				slug,
-				title,
-				productionType,
-				released,
-				html,
-				...credit
-			}) => (
-				<TableRow key={slug}>
-					<TableCell>
-						<Link to={"/credit/" + slug}>{title}</Link>
-					</TableCell>
+			{
+				creditsList
+					.filter( ({ productionType = "", }) => 
+						productionType
+							.toLowerCase()
+							.includes(filter),
+					)
+					.map(
+						({
+							slug,
+							title,
+							productionType,
+							released,
+							html,
+							...credit
+						}) => (
+							<TableRow key = { slug }>
+								<TableCell>
+									<Link to = { "/credit/" + slug }>{title}</Link>
+								</TableCell>
 
-					<TableCell>
-						<Link to={"/credit/" + slug}>{productionType}</Link>
-					</TableCell>
+								<TableCell>
+									<Link to = { "/credit/" + slug }>{productionType}</Link>
+								</TableCell>
 
-					<TableCell>
-						<Link to={"/credit/" + slug}>
-							{released &&
-								(Moment(released).isBefore(new Date())
-									? Moment(released).format("YYYY")
-									: "Coming Soon")}
-								</Link>
-							</TableCell>
-						</TableRow>
-			),
-		)
-	}
-</Table>
-	</Container>
+								<TableCell>
+									<Link to = { "/credit/" + slug }>
+										{
+											released && (Moment(released).isBefore(new Date())
+											? Moment(released).format("YYYY")
+											: "Coming Soon")}
+									</Link>
+								</TableCell>
+							</TableRow>
+						),
+					)
+			}
+		</Table>
+	</CreditsTableWrapper>
 );
 
 // --------------------------------------------------
@@ -245,6 +267,12 @@ export default class Credits extends React.Component {
 			filter: "theatre",
 		});
 
+	clickCommercial = () =>
+		this.setState({
+			view: "grid",
+			filter: "commercial",
+		});
+
 	render() {
 		return (
 			<div>
@@ -257,21 +285,7 @@ export default class Credits extends React.Component {
 						active={this.state.filter === "featured"}
 						onClick={this.clickFeatured}
 					>
-						Featured
-					</ViewSelectorButton>
-
-					<ViewSelectorButton
-						active={this.state.filter === "film"}
-						onClick={this.clickFilm}
-					>
-						Film
-					</ViewSelectorButton>
-
-					<ViewSelectorButton
-						active={this.state.filter === "short"}
-						onClick={this.clickShort}
-					>
-						Short
+						All
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
@@ -281,35 +295,68 @@ export default class Credits extends React.Component {
 						Theatre
 					</ViewSelectorButton>
 
+					<ViewSelectorButton
+						active={this.state.filter === "Commercial"}
+						onClick={this.clickCommercial}
+					>
+						Commercials
+					</ViewSelectorButton>
+
+					<ViewSelectorButton
+						active={this.state.filter === "film"}
+						onClick={this.clickFilm}
+					>
+						Features
+					</ViewSelectorButton>
+
+					<ViewSelectorButton
+						active={this.state.filter === "short"}
+						onClick={this.clickShort}
+					>
+						Shorts
+					</ViewSelectorButton>
+
 					<SeeAllButton>
 						<Button
 							active={this.state.view === "table"}
 							onClick={this.clickSeeAll}
 						>
-							See All
+							View CV
 						</Button>
 					</SeeAllButton>
 				</ViewSelectors>
 
 				{
 					this.state.view === "table"
-						? (
-							<CreditsTable creditsList={creditsList} />
-						) 
-						: (
-							<CreditsGrid
-								creditsList = {
-									creditsList.filter(
-										({ productionType = "" }) =>
-										this.state.filter === "featured"
-										? true
-										: productionType
+					? (
+						<div>
+							<CreditsTable creditsList = { creditsList } title = "Theatre" filter = "theatre" />
+							
+							<CreditsTable creditsList = { creditsList } title = "Commercials" filter = "commercial" />
+							
+							<CreditsTable creditsList = { creditsList } title = "Films" filter = "film" />
+							
+							<CreditsTable creditsList = { creditsList } title = "Shorts" filter = "short" />
+
+							{/*<CreditsTable creditsList = { creditsList } title = "NFTS Shorts" filter = "nfts" />*/}
+
+							<CreditsTable creditsList = { creditsList } title = "Television" filter = "television" />
+						</div>
+					) 
+					: (
+						<CreditsGrid
+							creditsList = {
+								creditsList.filter(
+									({ productionType = "" }) =>
+									this.state.filter === "featured"
+									? true
+									: productionType
 										.toLowerCase()
 										.includes(this.state.filter),
-									)
-								}
-							/>
-						)
+								)
+							}
+						/>
+					)
 				}
 			</div>
 		);

@@ -1,30 +1,28 @@
 import Generic from "./Generic";
 
-import { HtmlContent } from "src/components/common";
+import { HtmlContent, } from "src/components/common";
 import data from "src/data";
 
 // --------------------------------------------------
 
+console.log(data);
+
 export default () => (
-	<Generic title="Get in touch" src={data.contactPage.image.url}>
+	<Generic title = "Get in touch" src = { data.contactPage.image.url } >
 		<HtmlContent>{data.contactPage.html}</HtmlContent>
 
-		<h2>Social Media</h2>
+		<h2>Follow Jane</h2>
 
 		<p>
-			<a href={data.siteSettings.imdb}>IMDB</a>
-		</p>
+			<a href={data.siteSettings.imdb}>IMDB</a><br/>
 
-		<p>
-			<a href={data.siteSettings.linkedIn}>LinkedIn</a>
-		</p>
+			<a href={data.siteSettings.curtainCall}>Curtain Call</a><br/>
 
-		<p>
-			<a href={data.siteSettings.facebook}>Facebook</a>
-		</p>
+			<a href={data.siteSettings.linkedIn}>LinkedIn</a><br/>
 
-		<p>
-			<a href={data.siteSettings.vimeo}>Vimeo</a>
+			<a href={data.siteSettings.facebook}>Facebook</a><br/>
+
+			<a href={data.siteSettings.vimeo}>Vimeo</a><br/>
 		</p>
 	</Generic>
 );
