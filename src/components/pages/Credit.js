@@ -21,7 +21,6 @@ export default ( credit ) => (
 		</p>
 
 		{
-			console.log(credit),
 			credit.homepage
 			&& <p><a href = { credit.homepage }>{ `Visit ${ credit.title }'s homepage` }</a></p>
 		}

@@ -20,7 +20,7 @@ export const plog = str => o => (console.log(str, o), o);
 export const logProps = str =>
 	lifecycle({
 		componentDidUpdate() {
-			console.log(str, this.props);
+			//console.log(str, this.props);
 		},
 	});
 

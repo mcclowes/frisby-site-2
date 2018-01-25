@@ -126,7 +126,6 @@ const SeeAllButton = styled.div`
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
-	console.log({ creditsList, }),
 	<Container>
 		{
 			creditsList

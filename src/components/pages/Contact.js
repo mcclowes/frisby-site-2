@@ -5,8 +5,6 @@ import data from "src/data";
 
 // --------------------------------------------------
 
-console.log(data);
-
 export default () => (
 	<Generic title = "Get in touch" src = { data.contactPage.image.url } >
 		<HtmlContent>{data.contactPage.html}</HtmlContent>
