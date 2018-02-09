@@ -75,7 +75,7 @@ const Subtext = styled.div`
 	opacity: 0.7;
 `;
 
-const Cell = ({ image, title, slug, productionType, role, released }) => (
+const Cell = ({ image, title, slug, productionType, role, released, }) => (
 	<CellWrapper>
 		<Link to={"/credit/" + slug}>
 			<CellInner>
@@ -96,7 +96,7 @@ const Cell = ({ image, title, slug, productionType, role, released }) => (
 );
 
 const creditsListText = creditsList.reduce(
-	(acc, { title }) => `${acc}\n${title}`,
+	(acc, { title, }) => `${acc}\n${title}`,
 	"",
 );
 const description = `Credits:\n${creditsListText}`;
@@ -104,10 +104,11 @@ const description = `Credits:\n${creditsListText}`;
 // --------------------------------------------------
 
 const ViewSelectors = styled.div`
-display: flex;
-flex-direction: row;
+	display: flex;
+	flex-direction: row;
 	padding: 30px 30px 0;
 	width: 100%;
+	flex-wrap: wrap;
 `;
 
 const ViewSelectorButton = styled(Button)`
