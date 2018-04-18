@@ -43,7 +43,7 @@
   },
   "scripts": {
     "start": "codogo-scripts start",
-    "build": "codogo-scripts build",
+    "build": "codogo-scripts pack",
     "static": "yarn data && yarn build && react-snapshot",
     "data": "node scripts/static/makeDataFile",
     "format": "codogo-scripts format"

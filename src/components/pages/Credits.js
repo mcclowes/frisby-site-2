@@ -207,8 +207,12 @@ const CreditsTable = ({ creditsList, filter, title, }) => (
 								<TableCell>
 									<Link to = { "/credit/" + slug }>
 										{released &&
-											(Moment(released).isBefore(new Date())
-												? Moment(released).format("YYYY")
+											(Moment(released).isBefore(
+												new Date(),
+											)
+												? Moment(released).format(
+													"YYYY",
+												  )
 												: "Coming Soon")}
 									</Link>
 								</TableCell>

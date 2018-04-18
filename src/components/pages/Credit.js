@@ -8,23 +8,25 @@ import { HtmlContent, VimeoWrapper, } from "src/components/common";
 
 import data from "src/data";
 
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 
 // --------------------------------------------------
 
 export default credit => (
 	<Generic src = { credit.image && credit.image.url } title = { credit.title }>
-		{ R.contains("vimeo", credit.videoUrl) &&
+		{R.contains("vimeo", credit.videoUrl) && (
 			<VimeoWrapper>
-				<Vimeo videoId = { parseUrl(credit.videoUrl, true).pathname.split("/")[1] } />
+				<Vimeo
+					videoId = {
+						parseUrl(credit.videoUrl, true).pathname.split("/")[1]
+					}
+				/>
 			</VimeoWrapper>
-		}
+		)}
 
-		{ R.contains("youtube", credit.videoUrl) &&
-			<YouTube
-  				videoId = { parseUrl(credit.videoUrl, true).query.v }
-  			/>
-		}
+		{R.contains("youtube", credit.videoUrl) && (
+			<YouTube videoId = { parseUrl(credit.videoUrl, true).query.v } />
+		)}
 
 		<p>
 			<b>Title:</b> {credit.title}
