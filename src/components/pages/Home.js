@@ -39,7 +39,7 @@ const ButtonWrapper = styled.div`
 const Home = () => (
 	<HeroImage>
 		<Head />
-		
+
 		<TextWrapper>
 			<TitleText>{data.siteSettings.siteName}</TitleText>
 

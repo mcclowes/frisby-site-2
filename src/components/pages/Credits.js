@@ -33,10 +33,10 @@ const Container = styled(GridCell)`
 `;
 
 const widths = R.map(n => `${ 100 / n }%`)({
-	xs: 2,
-	sm: 2,
-	md: 3,
-	lg: 4,
+	xs: 1,
+	sm: 3,
+	md: 4,
+	lg: 5,
 });
 
 const CellWrapper = styled.div`
@@ -50,7 +50,6 @@ const CellInner = styled.div`
 const Image = styled.div`
 	background-color: #f8f8f8;
 	background-image: url("http://${ R.pipe(
-		R.tap(console.log),
 		R.path([ "image", "url", ]),
 		R.append(R.__, [
 			"res.cloudinary.com",
@@ -129,11 +128,7 @@ const SeeAllButton = styled.div`
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
-	<Container>
-		{creditsList
-			//.filter(R.prop("image"))
-			.map(o => <Cell key = { o.slug } { ...o } />)}
-	</Container>
+	<Container>{creditsList.map(o => <Cell key = { o.slug } { ...o } />)}</Container>
 );
 
 // --------------------------------------------------
@@ -141,11 +136,6 @@ const CreditsGrid = ({ creditsList, }) => (
 const Table = styled.table`
 	margin: auto;
 	border-collapse: collapse;
-`;
-
-const TableHeader = styled.thead`
-	font-weight: bold;
-	border-bottom: 1px solid ${ colors.text };
 `;
 
 const TableRow = styled.tr`
@@ -166,6 +156,11 @@ const TableCell = styled.td`
 	}
 `;
 
+const TableHeader = styled(TableCell)`
+	font-weight: bold;
+	border-bottom: 1px solid ${ colors.text };
+`;
+
 const CreditsTableWrapper = styled(Container)`
 	flex-direction: column;
 	align-items: center;
@@ -176,49 +171,51 @@ const CreditsTable = ({ creditsList, filter, title, }) => (
 		<h2>{title}</h2>
 
 		<Table>
-			<TableHeader>
-				<TableCell>Name</TableCell>
+			<tbody>
+				<TableRow>
+					<TableHeader>Name</TableHeader>
 
-				<TableCell>Type</TableCell>
+					<TableHeader>Type</TableHeader>
 
-				<TableCell>Released</TableCell>
-			</TableHeader>
+					<TableHeader>Released</TableHeader>
+				</TableRow>
 
-			{creditsList
-				.filter(({ productionType = "", }) =>
-					productionType.toLowerCase().includes(filter),
-				)
-				.map(
-					({
-						slug,
-						title,
-						productionType,
-						released,
-						html,
-						...credit
-					}) => (
-						<TableRow key = { slug }>
-							<TableCell>
-								<Link to = { "/credit/" + slug }>{title}</Link>
-							</TableCell>
+				{creditsList
+					.filter(({ productionType = "", }) =>
+						productionType.toLowerCase().includes(filter),
+					)
+					.map(
+						({
+							slug,
+							title,
+							productionType,
+							released,
+							html,
+							...credit
+						}) => (
+							<TableRow key = { slug }>
+								<TableCell>
+									<Link to = { "/credit/" + slug }>{title}</Link>
+								</TableCell>
 
-							<TableCell>
-								<Link to = { "/credit/" + slug }>
-									{productionType}
-								</Link>
-							</TableCell>
+								<TableCell>
+									<Link to = { "/credit/" + slug }>
+										{productionType}
+									</Link>
+								</TableCell>
 
-							<TableCell>
-								<Link to = { "/credit/" + slug }>
-									{released &&
-										(Moment(released).isBefore(new Date())
-											? Moment(released).format("YYYY")
-											: "Coming Soon")}
-								</Link>
-							</TableCell>
-						</TableRow>
-					),
-				)}
+								<TableCell>
+									<Link to = { "/credit/" + slug }>
+										{released &&
+											(Moment(released).isBefore(new Date())
+												? Moment(released).format("YYYY")
+												: "Coming Soon")}
+									</Link>
+								</TableCell>
+							</TableRow>
+						),
+					)}
+			</tbody>
 		</Table>
 	</CreditsTableWrapper>
 );
@@ -230,8 +227,8 @@ export default class Credits extends React.Component {
 		super(props);
 
 		this.state = {
-			view: "grid",
-			filter: "featured",
+			view: "table",
+			filter: null,
 		};
 	}
 
