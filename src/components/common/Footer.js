@@ -4,19 +4,19 @@ import styled from "styled-components";
 import * as mixins from "../style/mixins";
 import * as vars from "../style/vars";
 
-import { Icon } from "./misc";
+import { Icon, } from "./misc";
 
 // --------------------------------------------------
 
 const Wrapper = styled.footer`
-	background-color: ${R.path(["theme", "footer"])};
+	background-color: ${ R.path([ "theme", "footer", ]) };
 	color: white;
-	${mixins.bpEither("height", vars.dim.footer.height)} ${mixins.bpEither(
-			"padding",
-			vars.dim.nav.margin,
-		)};
+	${ mixins.bpEither("height", vars.dim.footer.height) } ${ mixins.bpEither(
+	"padding",
+	vars.dim.nav.margin,
+) };
 	align-items: center;
-	border-top: 1px solid ${mixins.tr(0.2)};
+	border-top: 1px solid ${ mixins.tr(0.2) };
 	bottom: 0;
 	display: flex;
 	justify-content: space-between;
@@ -28,7 +28,9 @@ const Wrapper = styled.footer`
 	font-size: 0.9em;
 `;
 
-const Left = styled.div`font-weight: bold;`;
+const Left = styled.div`
+	font-weight: bold;
+`;
 
 const Right = styled.div`
 	display: flex;
@@ -42,12 +44,14 @@ const Right = styled.div`
 
 const Stuff = styled.div``;
 
-const Credit = styled.a`display: block;`;
+const Credit = styled.a`
+	display: block;
+`;
 
 const Footer = () => (
 	<Wrapper>
 		<Stuff>© Jane Frisby 2017</Stuff>
-		<Credit href="https://consulting.codogo.io">website by Codogo</Credit>
+		<Credit href = "https://consulting.codogo.io">website by Codogo</Credit>
 	</Wrapper>
 );
 

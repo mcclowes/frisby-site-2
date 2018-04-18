@@ -1,4 +1,4 @@
-import { objMap } from "../../lib/util";
+import { objectMap, } from "codogo-utility-functions";
 
 // --------------------------------------------------
 
@@ -7,10 +7,10 @@ const md = 992;
 const lg = 1200;
 
 export const breakpoints = {
-	xs: { min: 0, max: sm - 1 },
-	sm: { min: sm, max: md - 1 },
-	md: { min: md, max: lg - 1 },
-	lg: { min: lg, max: 100000 },
+	xs: { min: 0, max: sm - 1, },
+	sm: { min: sm, max: md - 1, },
+	md: { min: md, max: lg - 1, },
+	lg: { min: lg, max: 100000, },
 };
 export const bps = breakpoints;
 
@@ -73,15 +73,15 @@ export const dimensions = {
 		},
 	},
 	gutter: {
-		full: objMap(gutter, (k, v) => v + "px"),
-		half: objMap(gutter, (k, v) => 0.5 * v + "px"),
-		quarter: objMap(gutter, (k, v) => 0.25 * v + "px"),
-		minusQuarter: objMap(gutter, (k, v) => -0.25 * v + "px"),
-		tripleHalf: objMap(gutter, (k, v) => 1.5 * v + "px"),
+		full: objectMap(gutter, (k, v) => v + "px"),
+		half: objectMap(gutter, (k, v) => 0.5 * v + "px"),
+		quarter: objectMap(gutter, (k, v) => 0.25 * v + "px"),
+		minusQuarter: objectMap(gutter, (k, v) => -0.25 * v + "px"),
+		tripleHalf: objectMap(gutter, (k, v) => 1.5 * v + "px"),
 		fullNum: gutter,
-		halfNum: objMap(gutter, (k, v) => 0.5 * v),
-		quarterNum: objMap(gutter, (k, v) => 0.25 * v),
-		tripleHalfNum: objMap(gutter, (k, v) => 1.5 * v),
+		halfNum: objectMap(gutter, (k, v) => 0.5 * v),
+		quarterNum: objectMap(gutter, (k, v) => 0.25 * v),
+		tripleHalfNum: objectMap(gutter, (k, v) => 1.5 * v),
 	},
 	scrollbar: scrollbar.width,
 };

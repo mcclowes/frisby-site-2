@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { printObj } from "src/lib/util";
-import { Container } from "src/components/common";
+import { printObj, } from "codogo-utility-functions";
+import { Container, } from "src/components/common";
 
 // --------------------------------------------------
 

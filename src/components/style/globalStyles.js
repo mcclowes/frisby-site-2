@@ -1,12 +1,12 @@
-import { injectGlobal, css } from "styled-components";
+import { injectGlobal, css, } from "styled-components";
 
 import * as vars from "./vars";
 import * as mixins from "./mixins";
-import { objMap } from "src/lib/util";
+import { objectMap, } from "codogo-utility-functions";
 
 // --------------------------------------------------
 
-const textMargins = objMap(vars.font.size, (key, val) => val + " 0");
+const textMargins = objectMap(vars.font.size, (key, val) => val + " 0");
 
 const defaultGlobalStyles = css`
 	@import url("https://fonts.googleapis.com/css?family=Abel|Nunito:400,600,700");
@@ -27,11 +27,10 @@ const defaultGlobalStyles = css`
 	body {
 		background: white;
 		font-family: Nunito, Helvetica, Arial, sans-serif;
-		${mixins.bpEach("font-size", vars.font.size)} color: ${vars.colors
-				.text};
+		${ mixins.bpEach("font-size", vars.font.size) } color: ${ vars.colors.text };
 		margin: 0;
 		line-height: 1.5;
-		${mixins.bpEither("margin-bottom", vars.dim.footer.height)};
+		${ mixins.bpEither("margin-bottom", vars.dim.footer.height) };
 	}
 
 	a,
@@ -47,7 +46,7 @@ const defaultGlobalStyles = css`
 	h2,
 	h3,
 	h4 {
-		${mixins.bpEach("margin", textMargins)};
+		${ mixins.bpEach("margin", textMargins) };
 	}
 
 	img {
@@ -75,6 +74,6 @@ const additionalGlobalStyles = css``;
 // --------------------------------------------------
 
 export default () => injectGlobal`
-	${defaultGlobalStyles}
-	${additionalGlobalStyles}
+	${ defaultGlobalStyles }
+	${ additionalGlobalStyles }
 `;

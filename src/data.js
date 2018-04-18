@@ -12,7 +12,7 @@ const slugify = x =>
 // transform a field or do something to an existing field to add a new one
 const adjustFields = (a, b, fn) => fieldsObj => ({
 	...fieldsObj,
-	...(fieldsObj[a] ? { [b]: fn(fieldsObj[a]) } : {}),
+	...(fieldsObj[a] ? { [b]: fn(fieldsObj[a]), } : {}),
 });
 
 // transform an array of objects to a map of objects, where the keys are object.slug
@@ -32,7 +32,10 @@ const shapeImageField = o => {
 			fields: {
 				file: {
 					url,
-					details: { size, image: { width, height } },
+					details: {
+						size,
+						image: { width, height, },
+					},
 					fileName,
 					contentType,
 				},
@@ -68,7 +71,7 @@ rawdata.items.forEach(item => {
 
 	dataObj[itemType] = dataObj[itemType]
 		? dataObj[itemType].concat(shapedItem)
-		: [shapedItem];
+		: [ shapedItem, ];
 });
 
 // --------------------------------------------------

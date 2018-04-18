@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 import * as vars from "src/components/style/vars";
-import * as mixins from "src/components/style/mixins";
+import * as mixins from "codogo-utility-functions";
 import data from "src/data";
-import { GridCell } from "./misc";
+import { GridCell, } from "./misc";
 
 // --------------------------------------------------
 
 const BannerWrapper = styled(GridCell)`
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url(${props => props.src || data.homePage.hero.url});
+		url(${ props => props.src || data.homePage.hero.url });
 	background-size: cover;
 	background-position: center center;
 	height: 18em;
-	${mixins.bpEither("padding-top", vars.dim.nav.height)} display: flex;
+	${ mixins.bpEither("padding-top", vars.dim.nav.height) } display: flex;
 	justify-content: center;
 	align-items: center;
 `;
@@ -21,12 +21,12 @@ const BannerWrapper = styled(GridCell)`
 const BannerText = styled(GridCell)`
 	color: white;
 	font-size: 3em;
-	font-family: ${vars.font.title.family};
+	font-family: ${ vars.font.title.family };
 	margin-top: -1em;
 `;
 
-export const Banner = ({ children, src }) => (
-	<BannerWrapper src={src}>
+export const Banner = ({ children, src, }) => (
+	<BannerWrapper src = { src }>
 		<BannerText>{children}</BannerText>
 	</BannerWrapper>
 );

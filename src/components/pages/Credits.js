@@ -1,30 +1,30 @@
 import styled from "styled-components";
 import Moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 
 import data from "src/data";
-import { bpEach } from "src/components/style/mixins";
-import { colors } from "src/components/style/vars";
-import { HtmlContent, Button, GridCell, Banner } from "src/components/common";
+import { bpEach, } from "src/components/style/mixins";
+import { colors, } from "src/components/style/vars";
+import { HtmlContent, Button, GridCell, Banner, } from "src/components/common";
 import Head from "src/components/common/Head";
 
 // --------------------------------------------------
 
 const creditsList = data.credits;
-creditsList.sort((x, y) => (
-	(y.released || x.released)
-	? new Date(y.released || 0) - new Date(x.released || 0)
-	: new Date(y.createdAt) - new Date(x.createdAt)
-));
+creditsList.sort(
+	(x, y) =>
+		y.released || x.released
+			? new Date(y.released || 0) - new Date(x.released || 0)
+			: new Date(y.createdAt) - new Date(x.createdAt),
+);
 
 const creditsProductionList = data.credits;
-creditsProductionList
-	.sort((x, y) => (
-		(y.released || x.released)
-		? new Date(y.released || 0) - new Date(x.released || 0)
-		: new Date(y.createdAt) - new Date(x.createdAt)
-	))
-;
+creditsProductionList.sort(
+	(x, y) =>
+		y.released || x.released
+			? new Date(y.released || 0) - new Date(x.released || 0)
+			: new Date(y.createdAt) - new Date(x.createdAt),
+);
 
 const Container = styled(GridCell)`
 	display: flex;
@@ -32,22 +32,26 @@ const Container = styled(GridCell)`
 	flex-direction: row;
 `;
 
-const widths = R.map(n => `${100 / n}%`)({
+const widths = R.map(n => `${ 100 / n }%`)({
 	xs: 2,
 	sm: 2,
 	md: 3,
 	lg: 4,
 });
 
-const CellWrapper = styled.div`${bpEach("width", widths)};`;
+const CellWrapper = styled.div`
+	${ bpEach("width", widths) };
+`;
 
-const CellInner = styled.div`padding: 1em 0.5em;`;
+const CellInner = styled.div`
+	padding: 1em 0.5em;
+`;
 
 const Image = styled.div`
-	${R.pipe(R.path(["image", "url"]))}
 	background-color: #f8f8f8;
-	background-image: url("http://${R.pipe(
-		R.path(["image", "url"]),
+	background-image: url("http://${ R.pipe(
+		R.tap(console.log),
+		R.path([ "image", "url", ]),
 		R.append(R.__, [
 			"res.cloudinary.com",
 			"codogo",
@@ -57,7 +61,7 @@ const Image = styled.div`
 			"https:",
 		]),
 		R.join("/"),
-	)}");
+	) }");
 	background-size: cover;
 	background-position: center center;
 	padding-top: 60%;
@@ -77,18 +81,16 @@ const Subtext = styled.div`
 
 const Cell = ({ image, title, slug, productionType, role, released, }) => (
 	<CellWrapper>
-		<Link to={"/credit/" + slug}>
+		<Link to = { "/credit/" + slug }>
 			<CellInner>
 				<Image image = { image } />
 
-				<Text>{ title }</Text>
+				<Text>{title}</Text>
 
 				<Subtext>
-					{
-						Moment(released).isBefore(new Date())
-							? Moment(released).format("YYYY")
-							: "Coming Soon"
-					}
+					{Moment(released).isBefore(new Date())
+						? Moment(released).format("YYYY")
+						: "Coming Soon"}
 				</Subtext>
 			</CellInner>
 		</Link>
@@ -96,10 +98,10 @@ const Cell = ({ image, title, slug, productionType, role, released, }) => (
 );
 
 const creditsListText = creditsList.reduce(
-	(acc, { title, }) => `${acc}\n${title}`,
+	(acc, { title, }) => `${ acc }\n${ title }`,
 	"",
 );
-const description = `Credits:\n${creditsListText}`;
+const description = `Credits:\n${ creditsListText }`;
 
 // --------------------------------------------------
 
@@ -115,24 +117,22 @@ const ViewSelectorButton = styled(Button)`
 	cursor: pointer;
 	margin: 0 0.3em;
 
-	${({ active, }) =>
-		active && ` background-color: rgba(0,0,0,0.5); color: white; `};
+	${ ({ active, }) =>
+		active && ` background-color: rgba(0,0,0,0.5); color: white; ` };
 `;
 
 const SeeAllButton = styled.div`
-		text-align: right;
-		flex: 1;
+	text-align: right;
+	flex: 1;
 `;
 
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
 	<Container>
-		{
-			creditsList
-				//.filter(R.prop("image"))
-				.map(o => <Cell key = { o.slug } { ...o } />)
-		}
+		{creditsList
+			//.filter(R.prop("image"))
+			.map(o => <Cell key = { o.slug } { ...o } />)}
 	</Container>
 );
 
@@ -145,15 +145,15 @@ const Table = styled.table`
 
 const TableHeader = styled.thead`
 	font-weight: bold;
-	border-bottom: 1px solid ${colors.text};
+	border-bottom: 1px solid ${ colors.text };
 `;
 
 const TableRow = styled.tr`
-border-bottom: 1px solid ${colors.lines};
-cursor: pointer;
+	border-bottom: 1px solid ${ colors.lines };
+	cursor: pointer;
 
 	&:hover {
-		background-color: ${colors.grey};
+		background-color: ${ colors.grey };
 		border-bottom: none;
 	}
 `;
@@ -168,12 +168,12 @@ const TableCell = styled.td`
 
 const CreditsTableWrapper = styled(Container)`
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 `;
 
 const CreditsTable = ({ creditsList, filter, title, }) => (
 	<CreditsTableWrapper>
-		<h2>{ title }</h2>
+		<h2>{title}</h2>
 
 		<Table>
 			<TableHeader>
@@ -184,43 +184,41 @@ const CreditsTable = ({ creditsList, filter, title, }) => (
 				<TableCell>Released</TableCell>
 			</TableHeader>
 
-			{
-				creditsList
-					.filter( ({ productionType = "", }) => 
-						productionType
-							.toLowerCase()
-							.includes(filter),
-					)
-					.map(
-						({
-							slug,
-							title,
-							productionType,
-							released,
-							html,
-							...credit
-						}) => (
-							<TableRow key = { slug }>
-								<TableCell>
-									<Link to = { "/credit/" + slug }>{title}</Link>
-								</TableCell>
+			{creditsList
+				.filter(({ productionType = "", }) =>
+					productionType.toLowerCase().includes(filter),
+				)
+				.map(
+					({
+						slug,
+						title,
+						productionType,
+						released,
+						html,
+						...credit
+					}) => (
+						<TableRow key = { slug }>
+							<TableCell>
+								<Link to = { "/credit/" + slug }>{title}</Link>
+							</TableCell>
 
-								<TableCell>
-									<Link to = { "/credit/" + slug }>{productionType}</Link>
-								</TableCell>
+							<TableCell>
+								<Link to = { "/credit/" + slug }>
+									{productionType}
+								</Link>
+							</TableCell>
 
-								<TableCell>
-									<Link to = { "/credit/" + slug }>
-										{
-											released && (Moment(released).isBefore(new Date())
+							<TableCell>
+								<Link to = { "/credit/" + slug }>
+									{released &&
+										(Moment(released).isBefore(new Date())
 											? Moment(released).format("YYYY")
 											: "Coming Soon")}
-									</Link>
-								</TableCell>
-							</TableRow>
-						),
-					)
-			}
+								</Link>
+							</TableCell>
+						</TableRow>
+					),
+				)}
 		</Table>
 	</CreditsTableWrapper>
 );
@@ -276,88 +274,102 @@ export default class Credits extends React.Component {
 	render() {
 		return (
 			<div>
-				<Head title="Credits" description={description} />
+				<Head title = "Credits" description = { description } />
 
 				<Banner>Credits</Banner>
 
 				<ViewSelectors>
 					<ViewSelectorButton
-						active={this.state.filter === "featured"}
-						onClick={this.clickFeatured}
+						active = { this.state.filter === "featured" }
+						onClick = { this.clickFeatured }
 					>
 						All
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
-						active={this.state.filter === "theatre"}
-						onClick={this.clickTheatre}
+						active = { this.state.filter === "theatre" }
+						onClick = { this.clickTheatre }
 					>
 						Theatre
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
-						active={this.state.filter === "Commercial"}
-						onClick={this.clickCommercial}
+						active = { this.state.filter === "Commercial" }
+						onClick = { this.clickCommercial }
 					>
 						Commercials
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
-						active={this.state.filter === "film"}
-						onClick={this.clickFilm}
+						active = { this.state.filter === "film" }
+						onClick = { this.clickFilm }
 					>
 						Features
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
-						active={this.state.filter === "short"}
-						onClick={this.clickShort}
+						active = { this.state.filter === "short" }
+						onClick = { this.clickShort }
 					>
 						Shorts
 					</ViewSelectorButton>
 
 					<SeeAllButton>
 						<Button
-							active={this.state.view === "table"}
-							onClick={this.clickSeeAll}
+							active = { this.state.view === "table" }
+							onClick = { this.clickSeeAll }
 						>
 							View CV
 						</Button>
 					</SeeAllButton>
 				</ViewSelectors>
 
-				{
-					this.state.view === "table"
-					? (
-						<div>
-							<CreditsTable creditsList = { creditsList } title = "Theatre" filter = "theatre" />
-							
-							<CreditsTable creditsList = { creditsList } title = "Commercials" filter = "commercial" />
-							
-							<CreditsTable creditsList = { creditsList } title = "Films" filter = "film" />
-							
-							<CreditsTable creditsList = { creditsList } title = "Shorts" filter = "short" />
+				{this.state.view === "table" ? (
+					<div>
+						<CreditsTable
+							creditsList = { creditsList }
+							title = "Theatre"
+							filter = "theatre"
+						/>
 
-							{/*<CreditsTable creditsList = { creditsList } title = "NFTS Shorts" filter = "nfts" />*/}
+						<CreditsTable
+							creditsList = { creditsList }
+							title = "Commercials"
+							filter = "commercial"
+						/>
 
-							<CreditsTable creditsList = { creditsList } title = "Television" filter = "television" />
-						</div>
-					) 
-					: (
-						<CreditsGrid
-							creditsList = {
-								creditsList.filter(
-									({ productionType = "" }) =>
-									this.state.filter === "featured"
+						<CreditsTable
+							creditsList = { creditsList }
+							title = "Films"
+							filter = "film"
+						/>
+
+						<CreditsTable
+							creditsList = { creditsList }
+							title = "Shorts"
+							filter = "short"
+						/>
+
+						{/*<CreditsTable creditsList = { creditsList } title = "NFTS Shorts" filter = "nfts" />*/}
+
+						<CreditsTable
+							creditsList = { creditsList }
+							title = "Television"
+							filter = "television"
+						/>
+					</div>
+				) : (
+					<CreditsGrid
+						creditsList = { creditsList.filter(
+							({ productionType = "", }) =>
+								this.state.filter === "featured"
 									? true
 									: productionType
 										.toLowerCase()
 										.includes(this.state.filter),
-								)
-							}
-						/>
-					)
-				}
+						) }
+					/>
+				)}
 			</div>
 		);
 	}

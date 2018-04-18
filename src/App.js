@@ -1,5 +1,5 @@
-import { ThemeProvider } from "styled-components";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ThemeProvider, } from "styled-components";
+import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
 
 import routesConfig from "./routesConfig";
 import injectGlobalStyles from "./components/style/globalStyles";
@@ -27,11 +27,11 @@ const routes = routesConfig.map(
 				...rest,
 			};
 
-			return <Comp {...passedProps} />;
+			return <Comp { ...passedProps } />;
 		};
 
 		return (
-			<Route key={path + i} path={path} exact={exact} render={render} />
+			<Route key = { path + i } path = { path } exact = { exact } render = { render } />
 		);
 	},
 );
@@ -39,13 +39,13 @@ const routes = routesConfig.map(
 export default () => (
 	<Router>
 		<ScrollToTop>
-			<ThemeProvider theme={defaultColors}>
+			<ThemeProvider theme = { defaultColors }>
 				<div>
-					<Nav key="Nav" />
-					<Main key="Main">
+					<Nav key = "Nav" />
+					<Main key = "Main">
 						<Switch>{routes}</Switch>
 					</Main>
-					<Footer key="Footer" />
+					<Footer key = "Footer" />
 				</div>
 			</ThemeProvider>
 		</ScrollToTop>
