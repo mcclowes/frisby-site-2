@@ -1,5 +1,5 @@
 import { ThemeProvider, } from "styled-components";
-import { BrowserRouter as Router, Route, Switch, } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, } from "react-router-dom";
 
 import routesConfig from "./routesConfig";
 import injectGlobalStyles from "./components/style/globalStyles";

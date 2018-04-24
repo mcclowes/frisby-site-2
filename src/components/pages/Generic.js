@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { GridCell, Container, TextCell, Banner, } from "src/components/common";
+import { Banner, Container, GridCell, TextCell, } from "src/components/common";
+
+import * as mixins from "codogo-utility-functions";
 
 import data from "src/data";
 import * as vars from "src/components/style/vars";
-import * as mixins from "codogo-utility-functions";
 import Head from "src/components/common/Head";
 
 // --------------------------------------------------
@@ -19,6 +20,7 @@ const clFetch = src =>
 const Generic = ({ children, title, src, description, }) => (
 	<div>
 		<Head image = { src } title = { title } description = { description } />
+		
 		<Banner src = { clFetch(src) }>{title}</Banner>
 
 		<GridCell>

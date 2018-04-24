@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-import * as vars from "src/components/style/vars";
 import * as mixins from "codogo-utility-functions";
+
+import * as vars from "src/components/style/vars";
 import data from "src/data";
-import { GridCell, } from "./misc";
+import { GridCell, } from "src/components/common/misc";
 
 // --------------------------------------------------
 

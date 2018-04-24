@@ -1,12 +1,14 @@
-import styled from "styled-components";
-import Moment from "moment";
+import * as mixins from "codogo-utility-functions";
+
+import { Banner, Button, GridCell, VideoThumbnail, } from "src/components/common";
 import { Link, } from "react-router-dom";
+import { colors, } from "src/components/style/vars";
+
+import Head from "src/components/common/Head";
+import Moment from "moment";
 
 import data from "src/data";
-import { bpEach, } from "src/components/style/mixins";
-import { colors, } from "src/components/style/vars";
-import { HtmlContent, Button, GridCell, Banner, } from "src/components/common";
-import Head from "src/components/common/Head";
+import styled from "styled-components";
 
 // --------------------------------------------------
 
@@ -40,7 +42,7 @@ const widths = R.map(n => `${ 100 / n }%`)({
 });
 
 const CellWrapper = styled.div`
-	${ bpEach("width", widths) };
+	${ mixins.bpEach("width", widths) };
 `;
 
 const CellInner = styled.div`
@@ -50,7 +52,7 @@ const CellInner = styled.div`
 const Image = styled.div`
 	background-color: #f8f8f8;
 	background-image: url("http://${ R.pipe(
-		R.path([ "image", "url", ]),
+		R.path([ "image", ]),
 		R.append(R.__, [
 			"res.cloudinary.com",
 			"codogo",
@@ -78,11 +80,24 @@ const Subtext = styled.div`
 	opacity: 0.7;
 `;
 
-const Cell = ({ image, title, slug, productionType, role, released, }) => (
+const Cell = ({
+	image,
+	title,
+	slug,
+	productionType,
+	role,
+	released,
+	videoUrl,
+}) => (
 	<CellWrapper>
 		<Link to = { "/credit/" + slug }>
 			<CellInner>
-				<Image image = { image } />
+				<Image
+					image = {
+						( image && image.url ) ||
+						( videoUrl && VideoThumbnail(videoUrl) )
+					}
+				/>
 
 				<Text>{title}</Text>
 
@@ -117,7 +132,7 @@ const ViewSelectorButton = styled(Button)`
 	margin: 0 0.3em;
 
 	${ ({ active, }) =>
-		active && ` background-color: rgba(0,0,0,0.5); color: white; ` };
+		active && " background-color: rgba(0,0,0,0.5); color: white; " };
 `;
 
 const SeeAllButton = styled.div`

@@ -1,12 +1,12 @@
-import { injectGlobal, css, } from "styled-components";
+import { css, injectGlobal, } from "styled-components";
+
+import * as mixins from "codogo-utility-functions";
 
 import * as vars from "./vars";
-import * as mixins from "./mixins";
-import { objectMap, } from "codogo-utility-functions";
 
 // --------------------------------------------------
 
-const textMargins = objectMap(vars.font.size, (key, val) => val + " 0");
+const textMargins = mixins.objectMap(vars.font.size, (key, val) => val + " 0");
 
 const defaultGlobalStyles = css`
 	@import url("https://fonts.googleapis.com/css?family=Abel|Nunito:400,600,700");

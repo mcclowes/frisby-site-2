@@ -2,7 +2,8 @@ import styled, { css, } from "styled-components";
 import { Link, } from "react-router-dom";
 import MQ from "react-responsive";
 
-import * as mixins from "../style/mixins";
+import * as mixins from "codogo-utility-functions";
+
 import * as vars from "../style/vars";
 import { objectMap, } from "codogo-utility-functions";
 

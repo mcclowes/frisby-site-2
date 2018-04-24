@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { NavLink, Link, } from "react-router-dom";
+import { Link, NavLink, } from "react-router-dom";
 import { withRouter, } from "react-router";
-import { compose, withState, withHandlers, } from "recompose";
+import { compose, withHandlers, withState, } from "recompose";
 
 import * as mixins from "codogo-utility-functions";
-import * as vars from "src/components/style/vars";
-import { objectMap, } from "codogo-utility-functions";
-import routesConfig from "src/routesConfig";
 
+import * as vars from "src/components/style/vars";
+import routesConfig from "src/routesConfig";
 import data from "src/data";
 
 // --------------------------------------------------

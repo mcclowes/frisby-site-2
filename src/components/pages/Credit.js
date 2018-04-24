@@ -1,50 +1,74 @@
+import { HtmlContent, Video, parseVideoThumbnail, } from "src/components/common";
+
+
+import Generic from "src/components/pages/Generic";
 import Moment from "moment";
-
-import Vimeo from "react-vimeo";
-import parseUrl from "url-parse";
-
-import Generic from "./Generic";
-import { HtmlContent, VimeoWrapper, } from "src/components/common";
-
-import data from "src/data";
-
-import YouTube from "react-youtube";
 
 // --------------------------------------------------
 
-export default credit => (
-	<Generic src = { credit.image && credit.image.url } title = { credit.title }>
-		{R.contains("vimeo", credit.videoUrl) && (
-			<VimeoWrapper>
-				<Vimeo
-					videoId = {
-						parseUrl(credit.videoUrl, true).pathname.split("/")[1]
-					}
-				/>
-			</VimeoWrapper>
-		)}
+export default class Credit extends React.Component {
+	constructor(props) {
+		super(props);
 
-		{R.contains("youtube", credit.videoUrl) && (
-			<YouTube videoId = { parseUrl(credit.videoUrl, true).query.v } />
-		)}
+		this.state = {
+			thumbnailUrl: null,
+		};
+	}
 
-		<p>
-			<b>Title:</b> {credit.title}
-			<br />
-			<b>Date:</b> {Moment(credit.release).format("YYYY")}
-			<br />
-			<b>Type:</b> {credit.productionType}
-			<br />
-		</p>
+	setThumbnailUrl = url => {
+		console.log("URL", url),
+		this.setState({
+			thumbnailUrl: url,
+		});
+	};
 
-		{credit.homepage && (
-			<p>
-				<a href = { credit.homepage }>{`Visit ${
-					credit.title
-				}'s homepage`}</a>
-			</p>
-		)}
+	componentDidMount() {
+		this.props.image && this.setThumbnailUrl(this.props.image.url);
+  		parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
+  	}
 
-		<HtmlContent>{credit.html}</HtmlContent>
-	</Generic>
-);
+  	render() {
+  		const {
+			image,
+			videoUrl,
+			title,
+			release,
+			productionType,
+			homepage,
+			html,
+		} = this.props;
+
+		const {
+			thumbnailUrl,
+		} = this.state;
+
+  		return (
+			<Generic 
+				src = { thumbnailUrl } 
+				title = { title }
+			>
+				{ videoUrl && <Video videoUrl = { videoUrl } /> }
+
+				<p>
+					<b>Title:</b> {title}
+					<br />
+					<b>Date:</b> {Moment(release).format("YYYY")}
+					<br />
+					<b>Type:</b> {productionType}
+					<br />
+				</p>
+
+				{homepage && (
+					<p>
+						<a href = { homepage }>{`Visit ${
+							title
+						}'s homepage`}</a>
+					</p>
+				)}
+
+				<HtmlContent>{html}</HtmlContent>
+			</Generic>
+		)
+  	}
+}
+

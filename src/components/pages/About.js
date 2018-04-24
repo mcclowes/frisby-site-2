@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import Generic from "./Generic";
 import Vimeo from "react-vimeo";
+
+import Generic from "src/components/pages/Generic";
 
 import { Button, HtmlContent, VimeoWrapper, } from "src/components/common";
 import data from "src/data";
