@@ -21,13 +21,16 @@ export default class Credit extends React.Component {
 	};
 
 	componentDidMount() {
-		this.props.image && this.setThumbnailUrl(this.props.image.url);
-		parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
+		if( this.props.image ) {
+			this.setThumbnailUrl(this.props.image.url);
+		}
+		else if( this.props.videoUrl ) {
+			parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
+		}
 	}
 
 	render() {
 		const {
-			image,
 			videoUrl,
 			title,
 			release,

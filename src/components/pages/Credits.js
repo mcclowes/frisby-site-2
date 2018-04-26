@@ -93,6 +93,7 @@ class Cell extends React.Component {
 
 	componentDidMount() {
 		const { videoUrl, } = this.props;
+
 		videoUrl &&
 			parseVideoThumbnail(videoUrl, thumbnailUrl =>
 				this.setState({
@@ -106,11 +107,9 @@ class Cell extends React.Component {
 			image,
 			title,
 			slug,
-			productionType,
-			role,
 			released,
-			videoUrl,
 		} = this.props;
+		
 		return (
 			<CellWrapper>
 				<Link to = { "/credit/" + slug }>
@@ -167,7 +166,9 @@ const SeeAllButton = styled.div`
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
-	<Container>{creditsList.map(o => <Cell key = { o.slug } { ...o } />)}</Container>
+	<Container>
+		{creditsList.map(o => <Cell key = { o.slug } { ...o } />)}
+	</Container>
 );
 
 // --------------------------------------------------
@@ -260,6 +261,9 @@ const CreditsTable = ({ creditsList, filter, title, }) => (
 					)}
 			</tbody>
 		</Table>
+
+		<br/>
+		{ filter.toLowerCase()=== "commercial" && <div>...and hundreds more!</div> }
 	</CreditsTableWrapper>
 );
 
@@ -334,7 +338,7 @@ export default class Credits extends React.Component {
 					</ViewSelectorButton>
 
 					<ViewSelectorButton
-						active = { this.state.filter === "Commercial" }
+						active = { this.state.filter === "commercial" }
 						onClick = { this.clickCommercial }
 					>
 						Commercials

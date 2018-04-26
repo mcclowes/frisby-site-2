@@ -29,7 +29,7 @@ const parseVimeoThumbnail = (videoId, callback) =>
 		.then(callback);
 
 const parseYouTubeThumbnail = (videoId, callback) => {
-	callback(`//img.youtube.com/vi/${ videoId }/2.jpg`);
+	callback(`//img.youtube.com/vi/${ videoId }/hqdefault.jpg`);
 };
 
 export const parseVideoThumbnail = (videoUrl, callback) => {
