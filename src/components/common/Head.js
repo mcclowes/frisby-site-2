@@ -25,7 +25,8 @@ const Head = ({
 		? `${ _title } | ${ siteName }`
 		: `${ siteName } | ${ siteDescription }`;
 
-	const image = _image && ( _image.includes("http") ? _image : "https:" + _image );
+	const image =
+		_image && (_image.includes("http") ? _image : "https:" + _image);
 
 	return (
 		<Helmet>

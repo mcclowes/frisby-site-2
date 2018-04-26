@@ -1,4 +1,7 @@
-import { parseVideoUrl, parseVideoThumbnail, } from "src/components/common/Video/parseVideoUrl";
+import {
+	parseVideoThumbnail,
+	parseVideoUrl,
+} from "src/components/common/Video/parseVideoUrl";
 
 import { VimeoWrapper, } from "src/components/common/Video/VimeoWrapper";
 
@@ -32,13 +35,11 @@ const Image = styled.div`
 export const Video = ({ videoUrl, }) => {
 	const video = parseVideoUrl(videoUrl);
 
-	return video.platform === "vimeo" ? 
-		(
-			<VimeoWrapper>
-				<Vimeo
-					videoId = { video.id }
-				/>
-			</VimeoWrapper>
-		)
-		: <YouTube videoId = { video.id } />
+	return video.platform === "vimeo" ? (
+		<VimeoWrapper>
+			<Vimeo videoId = { video.id } />
+		</VimeoWrapper>
+	) : (
+		<YouTube videoId = { video.id } />
+	);
 };

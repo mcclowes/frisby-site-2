@@ -1,6 +1,11 @@
 import * as mixins from "codogo-utility-functions";
 
-import { Banner, Button, GridCell, VideoThumbnail, } from "src/components/common";
+import {
+	Banner,
+	Button,
+	GridCell,
+	parseVideoThumbnail,
+} from "src/components/common";
 import { Link, } from "react-router-dom";
 import { colors, } from "src/components/style/vars";
 
@@ -51,7 +56,7 @@ const CellInner = styled.div`
 
 const Image = styled.div`
 	background-color: #f8f8f8;
-	background-image: url("http://${ R.pipe(
+	background-image: url("https://${ R.pipe(
 		R.path([ "image", ]),
 		R.append(R.__, [
 			"res.cloudinary.com",
@@ -80,36 +85,55 @@ const Subtext = styled.div`
 	opacity: 0.7;
 `;
 
-const Cell = ({
-	image,
-	title,
-	slug,
-	productionType,
-	role,
-	released,
-	videoUrl,
-}) => (
-	<CellWrapper>
-		<Link to = { "/credit/" + slug }>
-			<CellInner>
-				<Image
-					image = {
-						( image && image.url ) ||
-						( videoUrl && VideoThumbnail(videoUrl) )
-					}
-				/>
+class Cell extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
 
-				<Text>{title}</Text>
+	componentDidMount() {
+		const { videoUrl, } = this.props;
+		videoUrl &&
+			parseVideoThumbnail(videoUrl, thumbnailUrl =>
+				this.setState({
+					thumbnailUrl,
+				}),
+			);
+	}
 
-				<Subtext>
-					{Moment(released).isBefore(new Date())
-						? Moment(released).format("YYYY")
-						: "Coming Soon"}
-				</Subtext>
-			</CellInner>
-		</Link>
-	</CellWrapper>
-);
+	render() {
+		const {
+			image,
+			title,
+			slug,
+			productionType,
+			role,
+			released,
+			videoUrl,
+		} = this.props;
+		return (
+			<CellWrapper>
+				<Link to = { "/credit/" + slug }>
+					<CellInner>
+						<Image
+							image = {
+								(image && image.url) || this.state.thumbnailUrl
+							}
+						/>
+
+						<Text>{title}</Text>
+
+						<Subtext>
+							{Moment(released).isBefore(new Date())
+								? Moment(released).format("YYYY")
+								: "Coming Soon"}
+						</Subtext>
+					</CellInner>
+				</Link>
+			</CellWrapper>
+		);
+	}
+}
 
 const creditsListText = creditsList.reduce(
 	(acc, { title, }) => `${ acc }\n${ title }`,

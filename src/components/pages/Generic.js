@@ -20,7 +20,7 @@ const clFetch = src =>
 const Generic = ({ children, title, src, description, }) => (
 	<div>
 		<Head image = { src } title = { title } description = { description } />
-		
+
 		<Banner src = { clFetch(src) }>{title}</Banner>
 
 		<GridCell>

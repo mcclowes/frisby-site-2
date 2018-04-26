@@ -1,6 +1,5 @@
 import { HtmlContent, Video, parseVideoThumbnail, } from "src/components/common";
 
-
 import Generic from "src/components/pages/Generic";
 import Moment from "moment";
 
@@ -16,7 +15,6 @@ export default class Credit extends React.Component {
 	}
 
 	setThumbnailUrl = url => {
-		console.log("URL", url),
 		this.setState({
 			thumbnailUrl: url,
 		});
@@ -24,11 +22,11 @@ export default class Credit extends React.Component {
 
 	componentDidMount() {
 		this.props.image && this.setThumbnailUrl(this.props.image.url);
-  		parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
-  	}
+		parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
+	}
 
-  	render() {
-  		const {
+	render() {
+		const {
 			image,
 			videoUrl,
 			title,
@@ -38,16 +36,11 @@ export default class Credit extends React.Component {
 			html,
 		} = this.props;
 
-		const {
-			thumbnailUrl,
-		} = this.state;
+		const { thumbnailUrl, } = this.state;
 
-  		return (
-			<Generic 
-				src = { thumbnailUrl } 
-				title = { title }
-			>
-				{ videoUrl && <Video videoUrl = { videoUrl } /> }
+		return (
+			<Generic src = { thumbnailUrl } title = { title }>
+				{videoUrl && <Video videoUrl = { videoUrl } />}
 
 				<p>
 					<b>Title:</b> {title}
@@ -60,15 +53,12 @@ export default class Credit extends React.Component {
 
 				{homepage && (
 					<p>
-						<a href = { homepage }>{`Visit ${
-							title
-						}'s homepage`}</a>
+						<a href = { homepage }>{`Visit ${ title }'s homepage`}</a>
 					</p>
 				)}
 
 				<HtmlContent>{html}</HtmlContent>
 			</Generic>
-		)
-  	}
+		);
+	}
 }
-
