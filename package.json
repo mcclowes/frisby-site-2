@@ -37,11 +37,12 @@
   },
   "devDependencies": {
     "codogo-scripts": "^3.2.14",
+    "dotenv": "^4.0.0",
     "eslint": "^4.19.1",
     "jsonfile": "^3.0.1",
     "prettier": "^1.12.1",
-    "sitemap-static": "^0.4.2",
-    "process-promises": "^1.0.0"
+    "process-promises": "^1.0.0",
+    "sitemap-static": "^0.4.2"
   },
   "scripts": {
     "start": "codogo-scripts start",
