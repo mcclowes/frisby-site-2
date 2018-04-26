@@ -8,14 +8,12 @@
   "dependencies": {
     "codogo-utility-functions": "^1.0.5",
     "contentful": "^6.0.0",
-    "dotenv": "^4.0.0",
     "helmet": "^3.9.0",
     "imagesloaded": "^4.1.3",
     "marked": "^0.3.6",
     "masonry-layout": "^4.2.0",
     "moment": "^2.19.1",
     "node-fetch": "^1.7.2",
-    "process-promises": "^1.0.0",
     "qs": "^6.5.1",
     "ramda": "^0.24.1",
     "react": "^16.3.2",
@@ -39,15 +37,19 @@
   },
   "devDependencies": {
     "codogo-scripts": "^3.2.14",
-    "jsonfile": "^3.0.1",
     "eslint": "^4.19.1",
-    "prettier": "^1.12.1"
+    "jsonfile": "^3.0.1",
+    "prettier": "^1.12.1",
+    "sitemap-static": "^0.4.2",
+    "process-promises": "^1.0.0"
   },
   "scripts": {
     "start": "codogo-scripts start",
     "build": "codogo-scripts pack",
-    "static": "yarn data && yarn build && react-snapshot",
+    "static": "yarn data && yarn build && react-snapshot && yarn sitemap",
     "data": "node scripts/static/makeDataFile",
-    "format": "codogo-scripts format"
+    "lint": "codogo-scripts format",
+    "format": "codogo-scripts format",
+    "sitemap": "sitemap-static --prefix=http://janefrisbycasting.com/ build | sed -e \"s/\\.html//g\" > build/sitemap.xml"
   }
 }
