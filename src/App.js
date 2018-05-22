@@ -42,9 +42,11 @@ export default () => (
 			<ThemeProvider theme = { defaultColors }>
 				<div>
 					<Nav key = "Nav" />
+
 					<Main key = "Main">
 						<Switch>{routes}</Switch>
 					</Main>
+
 					<Footer key = "Footer" />
 				</div>
 			</ThemeProvider>

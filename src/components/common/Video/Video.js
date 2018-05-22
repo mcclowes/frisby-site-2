@@ -1,45 +1,32 @@
-import {
-	parseVideoThumbnail,
-	parseVideoUrl,
-} from "src/components/common/Video/parseVideoUrl";
-
+import { Player as ReactVideo, } from "video-react";
+import { ReactVideoWrapper, } from "src/components/common/Video/ReactVideoWrapper";
 import { VimeoWrapper, } from "src/components/common/Video/VimeoWrapper";
 
-import styled from "styled-components";
+import { parseVideoUrl, } from "src/components/common/Video/parseVideoUrl";
+
 import Vimeo from "react-vimeo";
 import YouTube from "react-youtube";
 
 // --------------------------------------------------
 
-const Image = styled.div`
-	background-color: #f8f8f8;
-	background-image: url("http://${ R.pipe(
-		R.path([ "image", "url", ]),
-		R.append(R.__, [
-			"res.cloudinary.com",
-			"codogo",
-			"image",
-			"fetch",
-			"h_500,c_fill,g_face,f_auto",
-			"https:",
-		]),
-		R.join("/"),
-	) }");
-	background-size: cover;
-	background-position: center center;
-	padding-top: 60%;
-`;
-
 // --------------------------------------------------
 
-export const Video = ({ videoUrl, }) => {
-	const video = parseVideoUrl(videoUrl);
+export const Video = ({ videoUrl, video, }) => {
+	const parsedVideoUrl = videoUrl ? parseVideoUrl(videoUrl) : undefined;
 
-	return video.platform === "vimeo" ? (
-		<VimeoWrapper>
-			<Vimeo videoId = { video.id } />
-		</VimeoWrapper>
-	) : (
-		<YouTube videoId = { video.id } />
-	);
+	if (videoUrl && parsedVideoUrl) {
+		return parsedVideoUrl.platform === "vimeo" ? (
+			<VimeoWrapper>
+				<Vimeo videoId = { parsedVideoUrl.id } />
+			</VimeoWrapper>
+		) : (
+			<YouTube videoId = { parsedVideoUrl.id } />
+		);
+	} else {
+		return (
+			<ReactVideoWrapper>
+				<ReactVideo playsInline src = { video.fields.file.url } />
+			</ReactVideoWrapper>
+		);
+	}
 };

@@ -103,13 +103,8 @@ class Cell extends React.Component {
 	}
 
 	render() {
-		const {
-			image,
-			title,
-			slug,
-			released,
-		} = this.props;
-		
+		const { image, title, slug, released, } = this.props;
+
 		return (
 			<CellWrapper>
 				<Link to = { "/credit/" + slug }>
@@ -166,9 +161,7 @@ const SeeAllButton = styled.div`
 // --------------------------------------------------
 
 const CreditsGrid = ({ creditsList, }) => (
-	<Container>
-		{creditsList.map(o => <Cell key = { o.slug } { ...o } />)}
-	</Container>
+	<Container>{creditsList.map(o => <Cell key = { o.slug } { ...o } />)}</Container>
 );
 
 // --------------------------------------------------
@@ -262,8 +255,10 @@ const CreditsTable = ({ creditsList, filter, title, }) => (
 			</tbody>
 		</Table>
 
-		<br/>
-		{ filter.toLowerCase()=== "commercial" && <div>...and hundreds more!</div> }
+		<br />
+		{filter.toLowerCase() === "commercial" && (
+			<div>...and hundreds more!</div>
+		)}
 	</CreditsTableWrapper>
 );
 

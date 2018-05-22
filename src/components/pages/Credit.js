@@ -21,10 +21,9 @@ export default class Credit extends React.Component {
 	};
 
 	componentDidMount() {
-		if( this.props.image ) {
+		if (this.props.image) {
 			this.setThumbnailUrl(this.props.image.url);
-		}
-		else if( this.props.videoUrl ) {
+		} else if (this.props.videoUrl) {
 			parseVideoThumbnail(this.props.videoUrl, this.setThumbnailUrl);
 		}
 	}
@@ -32,6 +31,7 @@ export default class Credit extends React.Component {
 	render() {
 		const {
 			videoUrl,
+			video,
 			title,
 			release,
 			productionType,
@@ -43,7 +43,9 @@ export default class Credit extends React.Component {
 
 		return (
 			<Generic src = { thumbnailUrl } title = { title }>
-				{videoUrl && <Video videoUrl = { videoUrl } />}
+				{(video || videoUrl) && (
+					<Video videoUrl = { videoUrl } video = { video } />
+				)}
 
 				<p>
 					<b>Title:</b> {title}
