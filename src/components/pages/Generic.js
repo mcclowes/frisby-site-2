@@ -15,7 +15,7 @@ const MaxWidthTextCell = styled(TextCell)`
 `;
 
 const clFetch = src =>
-	`http://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ src }`;
+	`https://res.cloudinary.com/codogo/image/fetch/h_500,c_fill,g_face,f_auto/https:${ src }`;
 
 const Generic = ({ children, title, src, description, }) => (
 	<div>

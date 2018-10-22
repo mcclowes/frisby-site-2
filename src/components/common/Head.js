@@ -9,7 +9,7 @@ import data from "src/data";
 
 const { sitePic, siteName, siteDescription, } = data.siteSettings;
 
-const siteUrl = "http://frisby.netlify.com";
+const siteUrl = "https://frisby.netlify.com";
 
 // --------------------------------------------------
 
