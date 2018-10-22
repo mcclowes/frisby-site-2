@@ -66,7 +66,9 @@ const Image = styled.div`
 			"h_500,c_fill,g_face,f_auto",
 			"https:",
 		]),
-		R.join(""),
+		R.join("/"),
+		R.split("///"),
+		R.join("//"),
 	) }");
 	background-size: cover;
 	background-position: center center;
