@@ -1,1 +1,1 @@
-statically generated websites made using react with a contentful cms backend? NICE
+[![Netlify Status](https://api.netlify.com/api/v1/badges/631961a3-1eea-46cb-b947-79e0dd5efec3/deploy-status)](https://app.netlify.com/sites/frisby/deploys)
