@@ -25,7 +25,7 @@ const extractVimeoThumbnail = R.pipe(
 );
 
 const parseVimeoThumbnail = (videoId, callback) =>
-  fetch(`http://vimeo.com/api/v2/video/${videoId}.xml`)
+  fetch(`https://vimeo.com/api/v2/video/${videoId}.xml`)
     .then((response) => response.text())
     .then(extractVimeoThumbnail)
     .then(callback);
