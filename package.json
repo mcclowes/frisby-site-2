@@ -53,8 +53,8 @@
     }
   },
   "scripts": {
-    "start": "codogo-scripts start",
-    "build": "codogo-scripts pack",
+    "start": "mcclowes-scripts start",
+    "build": "mcclowes-scripts pack",
     "static": "npm run data && npm run build && react-snapshot && npm run sitemap",
     "data": "node scripts/static/makeDataFile",
     "format": "prettier --write ./src",
