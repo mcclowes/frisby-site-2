@@ -5,7 +5,7 @@ import * as mixins from "codogo-utility-functions";
 
 import * as vars from "../style/vars";
 
-import { Icon } from "./misc";
+import { Icon } from "./Primitives";
 
 const Wrapper = styled.footer`
   background-color: ${R.path(["theme", "footer"])};

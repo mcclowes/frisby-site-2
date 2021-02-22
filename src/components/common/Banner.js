@@ -4,7 +4,7 @@ import * as mixins from "codogo-utility-functions";
 
 import * as vars from "src/components/style/vars";
 import data from "src/data";
-import { GridCell } from "src/components/common/misc";
+import { GridCell } from "src/components/common/Primitives";
 
 const BannerWrapper = styled(GridCell)`
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),

@@ -10,14 +10,6 @@ const minHeights = objectMap(
   (k, val) => `calc(100vh - ${val})`
 );
 
-// const Bg = styled.div`
-// 	${mixins.contained()}
-// 	z-index: -1;
-// 	background-image: url(${R.prop("bgImage")});
-// 	background-size: cover;
-// 	background-color: black;
-// `;
-
 const Bg = () => null;
 
 const PrevBg = Bg;
