@@ -1,8 +1,6 @@
 require("dotenv").config() // lets me use process.env
 const contentful = require("contentful");
 
-// --------------------------------------------------
-
 exports.default = (opts = {}) => (
 	contentful.createClient({
 		accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || "",

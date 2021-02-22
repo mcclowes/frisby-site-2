@@ -1,21 +1,19 @@
 import styled from "styled-components";
 
-import { printObj, } from "codogo-utility-functions";
+import { printObj } from "codogo-utility-functions";
 
-import { Container, } from "src/components/common";
-
-// --------------------------------------------------
+import { Container } from "src/components/common";
 
 const Wrapper = styled(Container)`
-	white-space: pre-wrap;
-	word-wrap: break-word;
-	font-size: 11px;
-	font-family: monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 11px;
+  font-family: monospace;
 `;
 
-export default data => () => (
-	<Wrapper>
-		{printObj(data)}
-		{console.log(data)}
-	</Wrapper>
+export default (data) => () => (
+  <Wrapper>
+    {printObj(data)}
+    {console.log(data)}
+  </Wrapper>
 );

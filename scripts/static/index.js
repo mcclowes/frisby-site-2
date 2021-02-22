@@ -1,8 +1,6 @@
 const exec = require("process-promises").exec;
 const makeDataFile = require("./dataFile").default;
 
-// --------------------------------------------------
-
 const buildScript = () => {
 	exec("yarn build && react-snapshot")
 	.on("process", process => {
