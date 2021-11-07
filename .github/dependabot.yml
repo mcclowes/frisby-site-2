@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - mcclowes
+  assignees:
+  - mcclowes
+  ignore:
+  - dependency-name: mcclowes-scripts
+    versions:
+    - 0.11.1
+  - dependency-name: marked
+    versions:
+    - 2.0.0
