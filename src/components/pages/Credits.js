@@ -242,8 +242,8 @@ export default class Credits extends React.Component {
     super(props);
 
     this.state = {
-      view: "featured",
-      filter: null,
+      view: "grid",
+      filter: "featured",
     };
   }
 
