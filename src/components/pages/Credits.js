@@ -242,7 +242,7 @@ export default class Credits extends React.Component {
     super(props);
 
     this.state = {
-      view: "table",
+      view: "featured",
       filter: null,
     };
   }

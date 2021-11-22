@@ -10,50 +10,50 @@ import Credit from "./components/pages/Credit";
 import data from "src/data";
 
 const routesConfig = [
-  {
-    path: "/",
-    title: "Home",
-    component: Home,
-    exact: true,
-    show: false,
-  },
-  {
-    path: "/data",
-    title: "Data",
-    component: Data(data),
-    show: false,
-  },
-  {
-    path: "/about",
-    title: "About",
-    component: About,
-    show: true,
-  },
-  {
-    path: "/credits",
-    title: "Credits",
-    component: Credits,
-    show: true,
-  },
+	{
+		path: "/",
+		title: "Home",
+		component: Home,
+		exact: true,
+		show: false,
+	},
+	{
+		path: "/data",
+		title: "Data",
+		component: Data(data),
+		show: false,
+	},
+	{
+		path: "/about",
+		title: "About",
+		component: About,
+		show: true,
+	},
+	{
+		path: "/credits",
+		title: "Credits",
+		component: Credits,
+		show: true,
+	},
 
-  {
-    path: "/contact",
-    title: "Contact",
-    component: Contact,
-    show: true,
-  },
+	{
+		path: "/contact",
+		title: "Contact",
+		component: Contact,
+		show: true,
+	},
 ];
 
 data.credits.forEach((o) => {
-  routesConfig.push({
-    path: "/credit/" + o.slug,
-    component: Credit,
-    ...o,
-  });
+	routesConfig.push({
+		path: "/credit/" + o.slug,
+		component: Credit,
+		...o,
+	});
 });
 
 routesConfig.push({
-  component: NotFound,
+	component: NotFound,
 });
 
 export default routesConfig;
