@@ -41,14 +41,19 @@ const Home = () => (
 
     <TextWrapper>
       <TitleText>{data.siteSettings.siteName}</TitleText>
+    </TextWrapper>
+  
+    <VimeoWrapper>
+      <Vimeo videoId={"9945440"} />
+    </VimeoWrapper>
 
-      <VimeoWrapper>
-        <Vimeo videoId={"9945440"} />
-      </VimeoWrapper>
-
+    <TextWrapper>
       <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutText1 }} />
 
-      Phone: <a href="tel:+447505963760"/>07505 963 760</a> | Email: <a href="mailto:janefrisby@hotmail.co.uk">janefrisby@hotmail.co.uk</a>
+      <div>
+        <b>Phone:</b> <a href="tel:+447505963760"/>07505 963 760</a> | 
+        <b>Email:</b> <a href="mailto:janefrisby@hotmail.co.uk">janefrisby@hotmail.co.uk</a>
+      </div>
 
       <ButtonWrapper>
         <Button to="/about">Find out more</Button>
