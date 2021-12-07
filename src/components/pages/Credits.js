@@ -15,6 +15,8 @@ import Moment from "moment";
 import data from "src/data";
 import styled from "styled-components";
 
+const defaultCreditImageURL = "https://images.ctfassets.net/8531mcpgxbxq/iBMtNvMRqgcgi42A2Qm4E/acd34db540188dc343b922e4032a2c94/Artboard_1.jpg"
+
 const creditsList = data.credits;
 creditsList.sort((x, y) =>
   y.released || x.released
@@ -107,7 +109,7 @@ class Cell extends React.Component {
       <CellWrapper>
         <Link to={"/credit/" + slug}>
           <CellInner>
-            <Image image={(image && image.url) || this.state.thumbnailUrl} />
+            <Image image={(image && image.url) || this.state.thumbnailUrl || defaultCreditImageURL} />
 
             <Text>{title}</Text>
 
