@@ -4,7 +4,7 @@ import * as mixins from "codogo-utility-functions";
 
 import data from "src/data";
 import * as vars from "src/components/style/vars";
-import { Button, GridCell } from "src/components/common";
+import { Button, GridCell, VimeoWrapper } from "src/components/common";
 import Head from "src/components/common/Head";
 
 const HeroImage = styled(GridCell)`
