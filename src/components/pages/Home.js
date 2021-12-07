@@ -36,8 +36,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const Home = () => {
-  console.log(data.homePage, data);
-
   return (
     <HeroImage>
       <Head />
