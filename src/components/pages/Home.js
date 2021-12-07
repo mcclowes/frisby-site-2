@@ -45,14 +45,15 @@ const Home = () => (
 
     <TextWrapper>
       <VimeoWrapper>
-        <Vimeo videoId={"9945440"} />
+        <Vimeo videoId={"299034024"} />
       </VimeoWrapper>
+      <br/>
 
       <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutText1 }} />
 
       <div>
         <b>Phone:</b> <a href="tel:+447505963760">07505 963 760</a>
-        <b>Email:</b> <a href="mailto:janefrisby@hotmail.co.uk">janefrisby@hotmail.co.uk</a>
+        <b>{" Email:"}</b> <a href="mailto:janefrisby@hotmail.co.uk">janefrisby@hotmail.co.uk</a>
       </div>
 
       <ButtonWrapper>
