@@ -35,27 +35,31 @@ const ButtonWrapper = styled.div`
   margin-top: 2em;
 `;
 
-const Home = () => (
-  <HeroImage>
-    <Head />
+const Home = () => {
+  console.log(data.homePage, data);
 
-    <TextWrapper>
-      <TitleText>{data.siteSettings.siteName}</TitleText>
-    </TextWrapper>
+  return (
+    <HeroImage>
+      <Head />
 
-    <TextWrapper>
-      <VimeoWrapper>
-        <Vimeo videoId={"299034024"} />
-      </VimeoWrapper>
-      <br/>
+      <TextWrapper>
+        <TitleText>{data.siteSettings.siteName}</TitleText>
+      </TextWrapper>
 
-      <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutText1 }} />
+      <TextWrapper>
+        <VimeoWrapper>
+          <Vimeo videoId={"299034024"} />
+        </VimeoWrapper>
+        <br/>
 
-      <ButtonWrapper>
-        <Button to="/about">Find out more</Button>
-      </ButtonWrapper>
-    </TextWrapper>
-  </HeroImage>
-);
+        <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutTextHtml }} />
+
+        <ButtonWrapper>
+          <Button to="/about">Find out more</Button>
+        </ButtonWrapper>
+      </TextWrapper>
+    </HeroImage>
+  )
+};
 
 export default Home;

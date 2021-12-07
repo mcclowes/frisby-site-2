@@ -78,6 +78,7 @@ rawdata.items.forEach((item) => {
 const homePage = R.pipe(adjustFields("hero", "hero", shapeImageField))(
   dataObj.homePage[0]
 );
+homePage.aboutTextHtml = marked(homePage.aboutText1)
 
 const aboutPage = dataObj.pages.find((o) => o.slug === "about");
 const contactPage = dataObj.pages.find((o) => o.slug === "contact");
