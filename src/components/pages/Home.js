@@ -51,11 +51,6 @@ const Home = () => (
 
       <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutText1 }} />
 
-      <div>
-        <b>Phone:</b> <a href="tel:+447505963760">07505 963 760</a>
-        <b>{" Email:"}</b> <a href="mailto:janefrisby@hotmail.co.uk">janefrisby@hotmail.co.uk</a>
-      </div>
-
       <ButtonWrapper>
         <Button to="/about">Find out more</Button>
       </ButtonWrapper>
