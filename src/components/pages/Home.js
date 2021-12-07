@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import Vimeo from "react-vimeo";
 import * as mixins from "codogo-utility-functions";
 
 import data from "src/data";
@@ -41,6 +41,10 @@ const Home = () => (
 
     <TextWrapper>
       <TitleText>{data.siteSettings.siteName}</TitleText>
+  
+      <VimeoWrapper>
+        <Vimeo videoId={"9945440"} />
+      </VimeoWrapper>
 
       <div dangerouslySetInnerHTML={{ __html: data.homePage.aboutText1 }} />
 
