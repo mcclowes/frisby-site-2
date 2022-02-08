@@ -26,7 +26,7 @@
     "react-snapshot": "^2.0.0-1",
     "react-vimeo": "^2.0.0",
     "react-youtube": "^7.6.0",
-    "recompose": "^0.26.0",
+    "recompose": "^0.30.0",
     "slugify": "^1.6.3",
     "split": "^1.0.1",
     "styled-components": "^3.2.6",
