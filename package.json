@@ -37,7 +37,7 @@
     "xml-reader": "^2.4.3"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "^4.19.1",
     "husky": "^7.0.4",
     "jsonfile": "^3.0.1",
