@@ -40,7 +40,7 @@
     "dotenv": "^16.0.2",
     "eslint": "^4.19.1",
     "husky": "^7.0.4",
-    "jsonfile": "^3.0.1",
+    "jsonfile": "^6.1.0",
     "mcclowes-scripts": "^0.3.6",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
